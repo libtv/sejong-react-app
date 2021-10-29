@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route } from "react-router-dom";
+import CDBizComponent from "./components/biz/CDBizComponent";
+import HomeComponent from "./components/HomeComponent";
+import GBizComponent from "./components/biz/GBizComponent";
+import IBizComponent from "./components/biz/IBizComponent";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Route path={"/"} exact={true} component={HomeComponent} />
+            <Route path={"/cdbiz"} component={CDBizComponent} />
+            <Route path={"/gbiz"} component={GBizComponent} />
+            <Route path={"/ibiz"} component={IBizComponent} />
+        </div>
+    );
 }
 
 export default App;
