@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import styled, { css, keyframes } from "styled-components";
+import WrapActionContentComponent from "./WrapActionContentComponent";
 
 const ButtonAnimation = keyframes`
     from {
@@ -14,8 +15,6 @@ const ButtonAnimation = keyframes`
         width: 250px;
         border-bottom: 2px solid black
     }
-
-
 `;
 
 const Content = styled.div`
@@ -221,9 +220,16 @@ const ContextFooterDiv = styled.div`
     }
 `;
 
-export default function BizContent({ children, contents }) {
+function BizContent({ children, contents, buttonAciton }) {
+    const [state, setState] = useState(false);
+
+    const MyButtonActionOnClick = useCallback(() => {
+        setState(!state);
+    }, [state]);
+
     return (
         <div className="BizContent">
+            <WrapActionContentComponent state={state} setState={setState} bizName={children}></WrapActionContentComponent>
             <Content>
                 <ContentTitleDiv>
                     <ContentTitle>{children}</ContentTitle>
@@ -233,7 +239,9 @@ export default function BizContent({ children, contents }) {
                     <ContentText>{contents[1]}</ContentText>
                 </ContentTextDiv>
                 <ContentButtonDiv>
-                    <ContentButton>서비스 이용</ContentButton>
+                    <a href="#BizSendWrapContent">
+                        <ContentButton onClick={MyButtonActionOnClick}>서비스 이용</ContentButton>
+                    </a>
                 </ContentButtonDiv>
                 <ContentButtonDiv>
                     <ContentGrayBoxDiv>
@@ -278,3 +286,5 @@ export default function BizContent({ children, contents }) {
         </div>
     );
 }
+
+export default React.memo(BizContent);

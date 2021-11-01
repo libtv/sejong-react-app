@@ -9,7 +9,6 @@ const Content = styled.div`
     align-items: center;
     text-align: center;
     ${(props) => {
-        console.log(props.url);
         return css`
             background-image: url(${props.url});
         `;

@@ -13,10 +13,10 @@ const FooterContentDiv = styled.div`
     width: 1250px;
     height: 130px;
     padding: 50px 0px 20px 0px;
+`;
 
-    p {
-        margin-top: 40px;
-    }
+const NbspDiv = styled.div`
+    margin-top: 40px;
 `;
 
 const FooterH2 = styled.h3`
@@ -72,11 +72,11 @@ export default function FooterComponent() {
                     <FooterH2 line={true}>이메일 무단 수집거부</FooterH2>
                     <FooterH2 line={true}>이용약관</FooterH2>
                     <FooterH2>명의도용방지서비스</FooterH2>
-                    <p>
+                    <NbspDiv className="nbspP">
                         <FooterH2 color="#abbec7" weight="small">
                             서울시 강동구 상일로 10길 36 (상일동) · 고객만족센터 1688.1000(유료), 080.889.1000(무료)
                         </FooterH2>
-                    </p>
+                    </NbspDiv>
                     <FooterH2 color="#abbec7" weight="small">
                         COPYRIGHT(C) 2021 SEJONG Telecom Inc. ALL RIGHTS RESERVED
                     </FooterH2>
