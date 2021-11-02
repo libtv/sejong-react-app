@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import bizUrlSelector from "./bizUrlSelector";
-import cdbizReducer from "./cdbiz";
+import menuSelector from "./menuSelector";
 
 export default function reducer() {
-    return combineReducers({ bizUrlSelector, cdbizReducer });
+    return combineReducers({ bizUrlSelector, menuSelector });
 }

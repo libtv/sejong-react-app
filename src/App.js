@@ -5,11 +5,13 @@ import GBizComponent from "./components/biz/GBizComponent";
 import IBizComponent from "./components/biz/IBizComponent";
 import { createGlobalStyle } from "styled-components";
 import IBizMain from "./components/ibiz/IBizMain";
-import IBizRegister from "./components/ibiz/IBizRegister";
+import LoginForm from "./components/member/LoginForm";
 
 const GlobalStyle = createGlobalStyle`
   html {
     scroll-behavior: smooth;
+    font-family: Poppins,Helvetica,sans-serif;
+    font-weight: 400;
   }
 `;
 
@@ -21,8 +23,8 @@ function App() {
             <Route path={"/cdbiz"} component={CDBizComponent} />
             <Route path={"/gbiz"} component={GBizComponent} />
             <Route path={"/ibiz"} component={IBizComponent} />
-            <Route path={"/login"} component={IBizMain} />
-            <Route path={"/register"} component={IBizRegister} />
+            <Route path={"/main"} component={IBizMain} />
+            <Route path={"/member"} component={LoginForm} />
         </div>
     );
 }

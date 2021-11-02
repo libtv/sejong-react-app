@@ -122,11 +122,11 @@ function IBizContentComponent() {
                 <IBizTitleContent>I Biz</IBizTitleContent>
                 <IBizFormContent>
                     <MyButton mColor="#ffdc00">
-                        <MyLink to="/register">회원가입</MyLink>
+                        <MyLink to="/member">회원가입</MyLink>
                     </MyButton>
 
                     <MyButton mColor="#1d74e5">
-                        <MyLink to="/login">로그인</MyLink>
+                        <MyLink to="/member">로그인</MyLink>
                     </MyButton>
                 </IBizFormContent>
             </IBizWrapContent>
