@@ -11,7 +11,7 @@ export default function GBizComponent({ children, location, match }) {
     return (
         <div className="Gbiz">
             <HeaderComponent />
-            <BizHeader url={"https://www.sejongtelecom.net/resources/img/sub/sub_visual_internet_2.jpg"}>부가서비스</BizHeader>
+            <BizHeader url={"./resources/img/sub_visual_internet_2.jpg"}>부가서비스</BizHeader>
             <BizContent contents={[contentIntro1st, " "]}>G BIZ</BizContent>
             <FooterComponent />
         </div>

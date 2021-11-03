@@ -12,7 +12,7 @@ export default function IBizComponent({ children, location, match }) {
     return (
         <div className="Ibiz">
             <HeaderComponent />
-            <BizHeader url={"https://www.sejongtelecom.net/resources/img/sub/sub_visual_line.jpg"}>부가서비스</BizHeader>
+            <BizHeader url={"./resources/img/sub_visual_line.jpg"}>부가서비스</BizHeader>
             <BizContent contents={[contentIntro1st, contentIntro2nd]}>I BIZ</BizContent>
             <FooterComponent />
         </div>

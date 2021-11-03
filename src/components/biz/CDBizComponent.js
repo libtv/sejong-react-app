@@ -12,7 +12,7 @@ export default function CDBizComponent({ children, location, match }) {
     return (
         <div className="CDbiz">
             <HeaderComponent />
-            <BizHeader url={"https://www.sejongtelecom.net/resources/img/sub/sub_visual_line_other.jpg"}>부가서비스</BizHeader>
+            <BizHeader url={"./resources/img/sub_visual_line_other.jpg"}>부가서비스</BizHeader>
             <BizContent contents={[contentIntro1st, contentIntro2nd]} buttonAciton={"cdbiz"}>
                 CD BIZ
             </BizContent>

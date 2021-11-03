@@ -132,7 +132,7 @@ const ADBizContentBox = styled.div`
             content: " ";
             width: 20px;
             height: 20px;
-            background: url("https://www.sejongtelecom.net/resources/img/common/pd_more_arr.png") no-repeat center center;
+            background: url("./resources/img/pd_more_arr.png") no-repeat center center;
             background-size: 100% 100%;
         }
         span {
@@ -185,7 +185,7 @@ export default function ADComponent() {
                 </ADButtonContent>
                 <ADBizContent>
                     <ADBizContentBox>
-                        <img src="https://www.sejongtelecom.net/resources/img/common/ico-pro_05.png"></img>
+                        <img src="./resources/img/ico-pro_05.png"></img>
                         <h2>CDBIZ</h2>
                         <p>가상의 개인번호를 부여하여 통화연결</p>
                         <span className="ADConetxtImg">
@@ -193,7 +193,7 @@ export default function ADComponent() {
                         </span>
                     </ADBizContentBox>
                     <ADBizContentBox>
-                        <img src="https://www.sejongtelecom.net/resources/img/common/ico-pro_06.png"></img>
+                        <img src="./resources/img/ico-pro_06.png"></img>
                         <h2>GBIZ</h2>
                         <p>가상의 개인번호를 부여하여 통화연결</p>
                         <span className="ADConetxtImg">
@@ -201,7 +201,7 @@ export default function ADComponent() {
                         </span>
                     </ADBizContentBox>
                     <ADBizContentBox>
-                        <img src="https://www.sejongtelecom.net/resources/img/common/ico-pro_07.png"></img>
+                        <img src="./resources/img/ico-pro_07.png"></img>
                         <h2>IBIZ</h2>
                         <p>가상의 개인번호를 부여하여 통화연결</p>
                         <span className="ADConetxtImg">
@@ -209,7 +209,7 @@ export default function ADComponent() {
                         </span>
                     </ADBizContentBox>
                     <ADBizContentBox>
-                        <img src="https://www.sejongtelecom.net/resources/img/common/ico-pro_08.png"></img>
+                        <img src="./resources/img/ico-pro_08.png"></img>
                         <h2>고객센터</h2>
                         <p>가상의 개인번호를 부여하여 통화연결</p>
                         <span className="ADConetxtImg">
@@ -219,7 +219,7 @@ export default function ADComponent() {
                 </ADBizContent>
                 <ADImageContent>
                     <div className="ADImageDiv">
-                        <img src="https://www.sejongtelecom.net/resources/img/main/pro-bg-01.png" alt="전용회선/데이터센터" />
+                        <img src="./resources/img/pro-bg-01.png" alt="전용회선/데이터센터" />
                     </div>
                 </ADImageContent>
             </ADContent>
@@ -231,7 +231,7 @@ export default function ADComponent() {
             </ADTitle>
             <RefContent>
                 <ADBizContentBox>
-                    <img src="https://www.sejongtelecom.net/resources/img/common/ico-pro_05.png"></img>
+                    <img src="./resources/img/ico-pro_05.png"></img>
                     <h2>CDBIZ</h2>
                     <p>가상의 개인번호를 부여하여 통화연결</p>
                     <span className="ADConetxtImg">
@@ -239,7 +239,7 @@ export default function ADComponent() {
                     </span>
                 </ADBizContentBox>
                 <ADBizContentBox>
-                    <img src="https://www.sejongtelecom.net/resources/img/common/ico-pro_05.png"></img>
+                    <img src="./resources/img/ico-pro_05.png"></img>
                     <h2>CDBIZ</h2>
                     <p>가상의 개인번호를 부여하여 통화연결</p>
                     <span className="ADConetxtImg">
@@ -247,7 +247,7 @@ export default function ADComponent() {
                     </span>
                 </ADBizContentBox>
                 <ADBizContentBox>
-                    <img src="https://www.sejongtelecom.net/resources/img/common/ico-pro_05.png"></img>
+                    <img src="./resources/img/ico-pro_05.png"></img>
                     <h2>CDBIZ</h2>
                     <p>가상의 개인번호를 부여하여 통화연결</p>
                     <span className="ADConetxtImg">
@@ -255,7 +255,7 @@ export default function ADComponent() {
                     </span>
                 </ADBizContentBox>
                 <ADBizContentBox>
-                    <img src="https://www.sejongtelecom.net/resources/img/common/ico-pro_05.png"></img>
+                    <img src="./resources/img/ico-pro_05.png"></img>
                     <h2>CDBIZ</h2>
                     <p>가상의 개인번호를 부여하여 통화연결</p>
                     <span className="ADConetxtImg">

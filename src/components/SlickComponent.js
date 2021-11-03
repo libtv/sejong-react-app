@@ -113,22 +113,22 @@ export default function SlickComponent() {
     return (
         <div className="SlickComponent">
             <StyledSlider {...settings}>
-                <SlickDiv img={"https://www.sejongtelecom.net/resources/img/main/main_img_1.jpg"}>
+                <SlickDiv img={"./resources/img/main_img_1.jpg"}>
                     <SlickTitle>비대면 서비스 바우처 지원사업</SlickTitle>
                     <SlickText>서비스 공급 기업 선정</SlickText>
                     <SlickBottom>세종텔레콤 솔루션 서비스팀</SlickBottom>
                 </SlickDiv>
-                <SlickDiv img={"https://www.sejongtelecom.net/resources/img/main/main_img_2.jpg"}>
+                <SlickDiv img={"./resources/img/main_img_2.jpg"}>
                     <SlickTitle>비대면 서비스 바우처 지원사업</SlickTitle>
                     <SlickText>서비스 공급 기업 선정</SlickText>
                     <SlickBottom>세종텔레콤 솔루션 서비스팀</SlickBottom>
                 </SlickDiv>
-                <SlickDiv img={"https://www.sejongtelecom.net/resources/img/main/main_img_3.jpg"}>
+                <SlickDiv img={"./resources/img/main_img_3.jpg"}>
                     <SlickTitle>비대면 서비스 바우처 지원사업</SlickTitle>
                     <SlickText>서비스 공급 기업 선정</SlickText>
                     <SlickBottom>세종텔레콤 솔루션 서비스팀</SlickBottom>
                 </SlickDiv>
-                <SlickDiv img={"https://www.sejongtelecom.net/resources/img/main/main_img_4.jpg"}>
+                <SlickDiv img={"./resources/img/main_img_4.jpg"}>
                     <SlickTitle>비대면 서비스 바우처 지원사업</SlickTitle>
                     <SlickText>서비스 공급 기업 선정</SlickText>
                     <SlickBottom>세종텔레콤 솔루션 서비스팀</SlickBottom>

@@ -148,37 +148,37 @@ export function CDBizContentInsertComponent() {
                     <table>
                         <tbody>
                             <tr>
-                                <td class="tableColor">LogisCode</td>
+                                <td className="tableColor">LogisCode</td>
                                 <td colSpan={7}>
                                     <input type={"text"}></input>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td class="tableColor">userPwd</td>
+                                <td className="tableColor">userPwd</td>
                                 <td colSpan={3}>
                                     <input type={"text"}></input>
                                 </td>
-                                <td class="tableColor">vnsNumber</td>
+                                <td className="tableColor">vnsNumber</td>
                                 <td colSpan={3}>
                                     <input type={"text"}></input>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tableColor">cstime</td>
+                                <td className="tableColor">cstime</td>
                                 <td colSpan={7}>
                                     <input type={"text"}></input>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tableColor">cetime</td>
+                                <td className="tableColor">cetime</td>
                                 <td colSpan={7}>
                                     <input type={"text"}></input>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td class="tableColor">called ID</td>
+                                <td className="tableColor">called ID</td>
                                 <td colSpan={7}>
                                     <input type={"text"}></input>
                                 </td>
@@ -187,11 +187,11 @@ export function CDBizContentInsertComponent() {
                     </table>
                 </CDBizFormContent>
                 <CDBizFormContent>
-                    <input type="checkbox" name="chkAll" id="chk" class="chkAll" />
+                    <input type="checkbox" name="chkAll" id="chk" className="chkAll" />
                     <li>이용약관, 개인정보 수집 및 이용, 위치정보 이용약관(선택), 프로모션 안내 메일 수신(선택)에 모두 동의합니다.</li>
                 </CDBizFormContent>
                 <CDBizFormContent>
-                    <input type="checkbox" name="chkAll" id="chk" class="chkAll" />
+                    <input type="checkbox" name="chkAll" id="chk" className="chkAll" />
                     <li>해당 사이트를 이용한 불법적인 행위를 금지하는 것에 동의합니다.</li>
                 </CDBizFormContent>
                 <CDBizFormContent>
@@ -211,37 +211,37 @@ export function CDBizContentDeleteComponent() {
                     <table>
                         <tbody>
                             <tr>
-                                <td class="tableColor">LogisCode</td>
+                                <td className="tableColor">LogisCode</td>
                                 <td colSpan={7}>
                                     <input type={"text"}></input>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td class="tableColor">userPwd</td>
+                                <td className="tableColor">userPwd</td>
                                 <td colSpan={3}>
                                     <input type={"text"}></input>
                                 </td>
-                                <td class="tableColor">vnsNumber</td>
+                                <td className="tableColor">vnsNumber</td>
                                 <td colSpan={3}>
                                     <input type={"text"}></input>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tableColor">cstime</td>
+                                <td className="tableColor">cstime</td>
                                 <td colSpan={7}>
                                     <input type={"text"}></input>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="tableColor">cetime</td>
+                                <td className="tableColor">cetime</td>
                                 <td colSpan={7}>
                                     <input type={"text"}></input>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td class="tableColor">called ID</td>
+                                <td className="tableColor">called ID</td>
                                 <td colSpan={7}>
                                     <input type={"text"}></input>
                                 </td>
@@ -250,11 +250,11 @@ export function CDBizContentDeleteComponent() {
                     </table>
                 </CDBizFormContent>
                 <CDBizFormContent>
-                    <input type="checkbox" name="chkAll" id="chk" class="chkAll" />
+                    <input type="checkbox" name="chkAll" id="chk" className="chkAll" />
                     <li>이용약관, 개인정보 수집 및 이용, 위치정보 이용약관(선택), 프로모션 안내 메일 수신(선택)에 모두 동의합니다.</li>
                 </CDBizFormContent>
                 <CDBizFormContent>
-                    <input type="checkbox" name="chkAll" id="chk" class="chkAll" />
+                    <input type="checkbox" name="chkAll" id="chk" className="chkAll" />
                     <li>해당 사이트를 이용한 불법적인 행위를 금지하는 것에 동의합니다.</li>
                 </CDBizFormContent>
                 <CDBizFormContent>

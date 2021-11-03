@@ -4,6 +4,7 @@ import IBizHeader from "./header/IBizHeader";
 import IBizNav from "./header/IBizNav";
 import IBizDashBoardContent from "./header/IBizDashBoardContent";
 import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 const IBizWrap = styled.div`
     width: 100%;
@@ -17,6 +18,14 @@ export default function IBizMain() {
     const state = useSelector((state) => {
         return state.menuSelector;
     });
+
+    const loginstate = useSelector((state) => {
+        return state.ibizReducer;
+    });
+
+    if (loginstate.loginmarker == "" || loginstate.loginmarker == null) {
+        return <Redirect to={"/"}></Redirect>;
+    }
 
     return (
         <div className="IBizMain">

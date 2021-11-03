@@ -2,7 +2,9 @@ import styled from "styled-components";
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FiUser, FiAirplay } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { asyncLogout } from "../../../modules/ibizReducer";
 
 const MyLink = styled(Link)`
     list-style: none;
@@ -146,8 +148,15 @@ const HeaderDashMenuText = styled.div`
 `;
 
 export default function IBizHeader() {
+    const dispatch = useDispatch();
+
     const onClickFunction = (e) => {
         e.preventDefault();
+    };
+
+    const onClickLogOut = (e) => {
+        e.preventDefault();
+        dispatch(asyncLogout());
     };
 
     return (
@@ -209,7 +218,7 @@ export default function IBizHeader() {
                             <AiOutlineSearch></AiOutlineSearch>
                         </HeaderDashMenuText>
                         <HeaderDashMenuText>
-                            <FiUser></FiUser>
+                            <FiUser onClick={onClickLogOut}></FiUser>
                         </HeaderDashMenuText>
                     </HeaderDashMenuDiv>
                 </HeaderMenuBarDiv>

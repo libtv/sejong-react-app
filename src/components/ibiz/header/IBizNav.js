@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { FiAirplay, FiChevronRight } from "react-icons/fi";
+import { FiAirplay } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { dashboard, destination, ibiz, ment, schedual, vns, account } from "../../../modules/menuSelector";
 

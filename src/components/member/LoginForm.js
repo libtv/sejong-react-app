@@ -2,7 +2,10 @@ import styled, { css } from "styled-components";
 import FooterComponent from "../FooterComponent";
 import HeaderComponent from "../HeaderComponent";
 import { MdPassword } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { asyncLogin } from "../../modules/ibizReducer";
 
 const BackgroundGrayWrap = styled.div`
     width: 100%;
@@ -95,7 +98,25 @@ const MyPassword = styled(MdPassword)`
     top: 10px;
 `;
 
-export default function LoginForm() {
+export default function LoginForm({ history, location }) {
+    const dispatch = useDispatch();
+    const state = useSelector((state) => {
+        return state.ibizReducer;
+    });
+
+    const onClickLogin = (e) => {
+        e.preventDefault();
+        dispatch(asyncLogin());
+    };
+
+    if (state.loading) {
+        return <div>로딩중입니다.</div>;
+    }
+
+    if (state.loginmarker) {
+        return <Redirect to={"/main"} />;
+    }
+
     return (
         <BackgroundGrayWrap>
             <HeaderComponent />
@@ -121,13 +142,10 @@ export default function LoginForm() {
                             <MyPassword></MyPassword>
                             <input type={"text"} placeholder="VNS Number"></input>
                         </MyInputDiv>
-                        <Link to={"/main"}>
-                            <ContentButton>Login</ContentButton>
-                        </Link>
+                        <ContentButton onClick={onClickLogin}>Login</ContentButton>
                     </LoginInput>
                 </LoginContentDiv>
             </LoginContentWrap>
-
             <FooterComponent />
         </BackgroundGrayWrap>
     );

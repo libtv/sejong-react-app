@@ -119,7 +119,7 @@ const MyContext = styled.div`
 const ContextServiceDiv = styled.div`
     width: 100%;
     height: 650px;
-    background-image: url("https://www.sejongtelecom.net/resources/img/sub/network/line_other_bg.jpg");
+    background-image: url("./resources/img/line_other_bg.jpg");
     margin: 0 auto;
 
     h3 {
