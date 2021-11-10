@@ -1,7 +1,7 @@
 import React from "react";
-import styled, { css, keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components";
 import "../css/font.css";
-import { Link } from "react-router-dom";
+import MyLink from "./util/MyLink";
 
 const MouseOverKeyframe = keyframes`
   from {
@@ -84,24 +84,13 @@ const MyContentH2 = styled.h2`
     height: 100%;
 `;
 
-const MyLink = styled(Link)`
-    list-style: none;
-    text-decoration: none;
-    &:visited {
-        color: black;
-    }
-    &::link {
-        color: black;
-    }
-`;
-
 export default function HeaderComponent({ children, location, match }) {
     return (
         <div className="Header">
             <SejongHeader>
                 <ImageDiv>
-                    <MyLink to={"/"}>
-                        <img src="./resources/img/h_logo.png" />
+                    <MyLink to={"/"} color={"black"}>
+                        <img src="./resources/img/h_logo.png" alt="사진" />
                     </MyLink>
                 </ImageDiv>
 
@@ -109,27 +98,27 @@ export default function HeaderComponent({ children, location, match }) {
                     <BlockContent />
                     <MyContentDiv>
                         <MyContent number={1}>
-                            <MyLink to={"/"}>
+                            <MyLink to={"/"} color={"black"}>
                                 <MyContentH2>세종텔레콤</MyContentH2>
                             </MyLink>
                         </MyContent>
                         <MyContent number={2}>
-                            <MyLink to={"/cdbiz"}>
+                            <MyLink to={"/cdbiz"} color={"black"}>
                                 <MyContentH2>CD BIZ</MyContentH2>
                             </MyLink>
                         </MyContent>
                         <MyContent number={3}>
-                            <MyLink to={"/gbiz"}>
+                            <MyLink to={"/gbiz"} color={"black"}>
                                 <MyContentH2>G BIZ</MyContentH2>
                             </MyLink>
                         </MyContent>
                         <MyContent number={4}>
-                            <MyLink to={"/ibiz"}>
+                            <MyLink to={"/ibiz"} color={"black"}>
                                 <MyContentH2>I BIZ</MyContentH2>
                             </MyLink>
                         </MyContent>
                         <MyContent number={5}>
-                            <MyLink to={"/ibiz"}>
+                            <MyLink to={"/ibiz"} color={"black"}>
                                 <MyContentH2>고객지원</MyContentH2>
                             </MyLink>
                         </MyContent>

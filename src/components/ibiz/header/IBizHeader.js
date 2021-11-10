@@ -2,20 +2,10 @@ import styled from "styled-components";
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FiUser, FiAirplay } from "react-icons/fi";
-import { Link, Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { asyncLogout } from "../../../modules/ibizReducer";
-
-const MyLink = styled(Link)`
-    list-style: none;
-    text-decoration: none;
-    &:visited {
-        color: white;
-    }
-    &::link {
-        color: white;
-    }
-`;
+import MyLink from "../../util/MyLink";
+import { dashboard, ibiz, vns, account, destination, ment, schedual } from "../../../modules/menuSelector";
 
 const HeaderBarDiv = styled.div`
     width: 100%;
@@ -53,6 +43,9 @@ const HeaderLogoDiv = styled.div`
 
     h5 {
         color: red;
+    }
+    &:hover {
+        background-color: #db1430;
     }
 `;
 
@@ -159,11 +152,48 @@ export default function IBizHeader() {
         dispatch(asyncLogout());
     };
 
+    /* state update */
+
+    const onClickDashboard = (e) => {
+        e.preventDefault();
+        dispatch(dashboard());
+    };
+
+    const onClickIBiz = (e) => {
+        e.preventDefault();
+        dispatch(ibiz());
+    };
+
+    const onClickVns = (e) => {
+        e.preventDefault();
+        dispatch(vns());
+    };
+
+    const onClickDestination = (e) => {
+        e.preventDefault();
+        dispatch(destination());
+    };
+
+    const onClickSchedual = (e) => {
+        e.preventDefault();
+        dispatch(schedual());
+    };
+
+    const onClickMent = (e) => {
+        e.preventDefault();
+        dispatch(ment());
+    };
+
+    const onClickAccount = (e) => {
+        e.preventDefault();
+        dispatch(account());
+    };
+
     return (
         <div className="IBizHeader">
             <HeaderBarTrunkDiv></HeaderBarTrunkDiv>
             <HeaderBarDiv>
-                <MyLink to={"/"}>
+                <MyLink to={"/"} color={"white"}>
                     <HeaderLogoDiv>
                         <h3>SEJONG.</h3>
                         <h5>TEL</h5>
@@ -171,30 +201,30 @@ export default function IBizHeader() {
                 </MyLink>
                 <HeaderMenuBarDiv>
                     <HeaderDashMenuDiv>
-                        <HeaderDashMenuText id="Dashboard" onClick={onClickFunction}>
+                        <HeaderDashMenuText id="Dashboard" onClick={onClickDashboard}>
                             Dashboard
                         </HeaderDashMenuText>
                         <HeaderDashMenuText id="Options" onClick={onClickFunction}>
                             Options
                             <HeaderDashMenuChildren>
                                 <HeaderDashMenuChildrenContent>
-                                    <div className="NavBarContent">
+                                    <div className="NavBarContent" onClick={onClickIBiz}>
                                         <FiAirplay></FiAirplay>
                                         <h3>IBiz Settings</h3>
                                     </div>
-                                    <div className="NavBarContent">
+                                    <div className="NavBarContent" onClick={onClickVns}>
                                         <FiAirplay></FiAirplay>
                                         <h3>VNS Settings</h3>
                                     </div>
-                                    <div className="NavBarContent">
+                                    <div className="NavBarContent" onClick={onClickDestination}>
                                         <FiAirplay></FiAirplay>
                                         <h3>Destination Number</h3>
                                     </div>
-                                    <div className="NavBarContent">
+                                    <div className="NavBarContent" onClick={onClickSchedual}>
                                         <FiAirplay></FiAirplay>
                                         <h3>Schedual Settings</h3>
                                     </div>
-                                    <div className="NavBarContent">
+                                    <div className="NavBarContent" onClick={onClickMent}>
                                         <FiAirplay></FiAirplay>
                                         <h3>Ment Settings</h3>
                                     </div>
@@ -205,7 +235,7 @@ export default function IBizHeader() {
                             Users
                             <HeaderDashMenuChildren>
                                 <HeaderDashMenuChildrenContent>
-                                    <div className="NavBarContent">
+                                    <div className="NavBarContent" onClick={onClickAccount}>
                                         <FiAirplay></FiAirplay>
                                         <h3>Accounts</h3>
                                     </div>

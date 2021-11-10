@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css, keyframes } from "styled-components";
+import styled, { css } from "styled-components";
 
 const ConsultingDiv = styled.div`
     margin-top: -150px;
@@ -109,7 +109,7 @@ export default function ConsultingComponent() {
                                 <p className="ContentPText">(월~금 / 공휴일 제외)</p>
                             </div>
                             <div className="ContentDivRight">
-                                <img src="./resources/img/ico-headset.png"></img>
+                                <img src="./resources/img/ico-headset.png" alt="사진"></img>
                             </div>
                         </div>
                     </ConsultingContentApp>
@@ -122,7 +122,7 @@ export default function ConsultingComponent() {
                                 <p className="ContentPText">(월~금 / 공휴일 제외)</p>
                             </div>
                             <div className="ContentDivRight">
-                                <img src="./resources/img/ico-headset.png"></img>
+                                <img src="./resources/img/ico-headset.png" alt="사진"></img>
                             </div>
                         </div>
                     </ConsultingContentApp>

@@ -50,12 +50,16 @@ export function account() {
 
 //* initialize const variable *//
 const initializeState = {
-    select: "",
+    select: "dashboard",
 };
 
 //* reducer *//
 export default function menuSelector(state = initializeState, action) {
     switch (action.type) {
+        case DASHBOARD_SELECT:
+            return {
+                select: "dashboard",
+            };
         case IBIZ_SELECT:
             return {
                 select: "ibiz",
@@ -81,8 +85,6 @@ export default function menuSelector(state = initializeState, action) {
                 select: "account",
             };
         default:
-            return {
-                select: "dashboard",
-            };
+            return state;
     }
 }

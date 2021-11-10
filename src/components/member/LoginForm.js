@@ -1,11 +1,14 @@
 import styled, { css } from "styled-components";
 import FooterComponent from "../FooterComponent";
 import HeaderComponent from "../HeaderComponent";
-import { MdPassword } from "react-icons/md";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { asyncLogin } from "../../modules/ibizReducer";
+import { asyncLogin, logout } from "../../modules/ibizReducer";
+import Loading from "../util/Loading";
+import MyInput from "../util/MyInput";
+import MyButton from "../util/MyButton";
+import $ from "jquery";
 
 const BackgroundGrayWrap = styled.div`
     width: 100%;
@@ -61,43 +64,6 @@ const LoginInput = styled.form`
     text-align: center;
 `;
 
-const ContentButton = styled.button`
-    background-color: #69a4ff;
-    width: 230px;
-    height: 60px;
-    padding: 15px 70px;
-    border: none;
-    border-radius: 30px;
-    font-size: 16px;
-    color: white;
-    cursor: pointer;
-    margin-top: 50px;
-    font-weight: 600;
-`;
-
-const MyInputDiv = styled.div`
-    position: relative;
-    color: #69a4ff;
-
-    input {
-        width: 100%;
-        padding: 10px 30px;
-        border: none;
-        border-bottom: 2px solid #69a4ff;
-        margin-bottom: 30px;
-        box-sizing: border-box;
-    }
-
-    input:focus {
-        border-bottom: 4px solid #3684ff;
-    }
-`;
-
-const MyPassword = styled(MdPassword)`
-    position: absolute;
-    top: 10px;
-`;
-
 export default function LoginForm({ history, location }) {
     const dispatch = useDispatch();
     const state = useSelector((state) => {
@@ -106,43 +72,56 @@ export default function LoginForm({ history, location }) {
 
     const onClickLogin = (e) => {
         e.preventDefault();
-        dispatch(asyncLogin());
-    };
+        const id = $("#id").val();
+        const pwd = $("#password").val();
+        const vnsNumber = $("#vnsnumber").val();
 
-    if (state.loading) {
-        return <div>로딩중입니다.</div>;
-    }
+        if (id === null || id === "") {
+            alert("아이디를 입력해주세요.");
+        } else if (pwd === null || pwd === "") {
+            alert("비밀번호를 입력해주세요.");
+        } else if (vnsNumber === null || vnsNumber === "") {
+            alert("VnsNumber를 입력해주세요.");
+        } else {
+            dispatch(asyncLogin(id, pwd, vnsNumber));
+        }
+    };
 
     if (state.loginmarker) {
         return <Redirect to={"/main"} />;
     }
 
+    if (state.failed) {
+        alert("아이디 혹은 비밀번호를 확인해주세요.");
+        dispatch(logout());
+    }
+
     return (
         <BackgroundGrayWrap>
             <HeaderComponent />
+            {state.loading && <Loading></Loading>}
 
             <LoginContentWrap>
                 <LoginContentDiv color="#3684ff" endColor="#69a4ff">
-                    <img src="./resources/img/h_logo.png" />
+                    <img src="./resources/img/h_logo.png" alt="사진" />
                     <h3>Please log in to the iBiz</h3>
                     <h3>get access control</h3>
                     <p>In computer security, logging in is the process by which an individual gains access to a computer system by identifying and authenticating themselves.</p>
                 </LoginContentDiv>
                 <LoginContentDiv color="white" endColor="white">
                     <LoginInput>
-                        <MyInputDiv>
-                            <MyPassword></MyPassword>
-                            <input type={"text"} placeholder="ID"></input>
-                        </MyInputDiv>
-                        <MyInputDiv>
-                            <MyPassword></MyPassword>
-                            <input type={"text"} placeholder="PassWord"></input>
-                        </MyInputDiv>
-                        <MyInputDiv>
-                            <MyPassword></MyPassword>
-                            <input type={"text"} placeholder="VNS Number"></input>
-                        </MyInputDiv>
-                        <ContentButton onClick={onClickLogin}>Login</ContentButton>
+                        <MyInput>
+                            <input type={"text"} placeholder="ID" id="id" defaultValue={"naver_t"}></input>
+                        </MyInput>
+                        <MyInput>
+                            <input type={"text"} placeholder="PassWord" id="password" defaultValue={"qnrlqnrk123"}></input>
+                        </MyInput>
+                        <MyInput>
+                            <input type={"text"} placeholder="VNS Number" id="vnsnumber" defaultValue={"402"}></input>
+                        </MyInput>
+                        <MyButton onClick={onClickLogin} color={"#69a4ff"} marginTop={50}>
+                            Login
+                        </MyButton>
                     </LoginInput>
                 </LoginContentDiv>
             </LoginContentWrap>

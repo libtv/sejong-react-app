@@ -1,7 +1,8 @@
-import styled, { css, keyframes } from "styled-components";
+import styled from "styled-components";
 import { cdbizSelectorDelete, cdbizSelectorInsert } from "../../../modules/bizUrlSelector";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useCallback } from "react";
+import MyTable from "../../util/MyTable";
 
 const CDBizWrapContent = styled.div`
     width: 100%;
@@ -107,7 +108,7 @@ function CDBizContentComponent() {
     const onSelectClick = useCallback(
         (e) => {
             e.preventDefault();
-            if (e.target.value == "delete") {
+            if (e.target.value === "delete") {
                 dispatch(cdbizSelectorDelete());
             } else {
                 dispatch(cdbizSelectorInsert());
@@ -145,46 +146,44 @@ export function CDBizContentInsertComponent() {
             <CDBizWrapContent>
                 <CDBizTitleContent>CDBiz 등록 폼</CDBizTitleContent>
                 <CDBizFormContent>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td className="tableColor">LogisCode</td>
-                                <td colSpan={7}>
-                                    <input type={"text"}></input>
-                                </td>
-                            </tr>
+                    <MyTable>
+                        <tr>
+                            <td className="tableColor">LogisCode</td>
+                            <td colSpan={7}>
+                                <input type={"text"}></input>
+                            </td>
+                        </tr>
 
-                            <tr>
-                                <td className="tableColor">userPwd</td>
-                                <td colSpan={3}>
-                                    <input type={"text"}></input>
-                                </td>
-                                <td className="tableColor">vnsNumber</td>
-                                <td colSpan={3}>
-                                    <input type={"text"}></input>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="tableColor">cstime</td>
-                                <td colSpan={7}>
-                                    <input type={"text"}></input>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="tableColor">cetime</td>
-                                <td colSpan={7}>
-                                    <input type={"text"}></input>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td className="tableColor">userPwd</td>
+                            <td colSpan={3}>
+                                <input type={"text"}></input>
+                            </td>
+                            <td className="tableColor">vnsNumber</td>
+                            <td colSpan={3}>
+                                <input type={"text"}></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="tableColor">cstime</td>
+                            <td colSpan={7}>
+                                <input type={"text"}></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="tableColor">cetime</td>
+                            <td colSpan={7}>
+                                <input type={"text"}></input>
+                            </td>
+                        </tr>
 
-                            <tr>
-                                <td className="tableColor">called ID</td>
-                                <td colSpan={7}>
-                                    <input type={"text"}></input>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <tr>
+                            <td className="tableColor">called ID</td>
+                            <td colSpan={7}>
+                                <input type={"text"}></input>
+                            </td>
+                        </tr>
+                    </MyTable>
                 </CDBizFormContent>
                 <CDBizFormContent>
                     <input type="checkbox" name="chkAll" id="chk" className="chkAll" />

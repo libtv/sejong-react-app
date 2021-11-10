@@ -3,7 +3,7 @@ import bizUrlSelector from "./bizUrlSelector";
 import ibizReducer from "./ibizReducer";
 import menuSelector from "./menuSelector";
 
-import storage from "redux-persist/lib/storage";
+import storageSession from "redux-persist/lib/storage/session";
 import { persistReducer } from "redux-persist";
 
 // localStorage에 저장하고 싶으면 import storage from 'redux-persist/lib/storage
@@ -11,7 +11,7 @@ import { persistReducer } from "redux-persist";
 
 const persistConfig = {
     key: "root",
-    storage,
+    storage: storageSession,
     whitelist: ["ibizReducer"],
     // blacklist -> 그것만 제외합니다
 };

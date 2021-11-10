@@ -1,7 +1,6 @@
-import styled, { css, keyframes } from "styled-components";
-import React, { useCallback, useState } from "react";
-import { Route, Link } from "react-router-dom";
-import IBizMain from "../../ibiz/IBizMain";
+import styled, { css } from "styled-components";
+import React from "react";
+import MyLink from "../../util/MyLink";
 
 const IBizWrapContent = styled.div`
     width: 100%;
@@ -104,17 +103,6 @@ const MyButton = styled.button`
     }}
 `;
 
-const MyLink = styled(Link)`
-    list-style: none;
-    text-decoration: none;
-    &:visited {
-        color: black;
-    }
-    &::link {
-        color: black;
-    }
-`;
-
 function IBizContentComponent() {
     return (
         <div className="CDbizContent">
@@ -122,11 +110,15 @@ function IBizContentComponent() {
                 <IBizTitleContent>I Biz</IBizTitleContent>
                 <IBizFormContent>
                     <MyButton mColor="#ffdc00">
-                        <MyLink to="/member">회원가입</MyLink>
+                        <MyLink to="/member" color={"black"}>
+                            회원가입
+                        </MyLink>
                     </MyButton>
 
                     <MyButton mColor="#1d74e5">
-                        <MyLink to="/member">로그인</MyLink>
+                        <MyLink to="/member" color={"white"}>
+                            로그인
+                        </MyLink>
                     </MyButton>
                 </IBizFormContent>
             </IBizWrapContent>

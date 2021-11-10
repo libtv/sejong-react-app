@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css, keyframes } from "styled-components";
+import styled, { css } from "styled-components";
 
 const ADTitle = styled.div`
     width: 600px;
@@ -185,7 +185,7 @@ export default function ADComponent() {
                 </ADButtonContent>
                 <ADBizContent>
                     <ADBizContentBox>
-                        <img src="./resources/img/ico-pro_05.png"></img>
+                        <img src="./resources/img/ico-pro_05.png" alt="사진"></img>
                         <h2>CDBIZ</h2>
                         <p>가상의 개인번호를 부여하여 통화연결</p>
                         <span className="ADConetxtImg">
@@ -193,7 +193,7 @@ export default function ADComponent() {
                         </span>
                     </ADBizContentBox>
                     <ADBizContentBox>
-                        <img src="./resources/img/ico-pro_06.png"></img>
+                        <img src="./resources/img/ico-pro_06.png" alt="사진"></img>
                         <h2>GBIZ</h2>
                         <p>가상의 개인번호를 부여하여 통화연결</p>
                         <span className="ADConetxtImg">
@@ -201,7 +201,7 @@ export default function ADComponent() {
                         </span>
                     </ADBizContentBox>
                     <ADBizContentBox>
-                        <img src="./resources/img/ico-pro_07.png"></img>
+                        <img src="./resources/img/ico-pro_07.png" alt="사진"></img>
                         <h2>IBIZ</h2>
                         <p>가상의 개인번호를 부여하여 통화연결</p>
                         <span className="ADConetxtImg">
@@ -209,7 +209,7 @@ export default function ADComponent() {
                         </span>
                     </ADBizContentBox>
                     <ADBizContentBox>
-                        <img src="./resources/img/ico-pro_08.png"></img>
+                        <img src="./resources/img/ico-pro_08.png" alt="사진"></img>
                         <h2>고객센터</h2>
                         <p>가상의 개인번호를 부여하여 통화연결</p>
                         <span className="ADConetxtImg">
@@ -231,7 +231,7 @@ export default function ADComponent() {
             </ADTitle>
             <RefContent>
                 <ADBizContentBox>
-                    <img src="./resources/img/ico-pro_05.png"></img>
+                    <img src="./resources/img/ico-pro_05.png" alt="사진"></img>
                     <h2>CDBIZ</h2>
                     <p>가상의 개인번호를 부여하여 통화연결</p>
                     <span className="ADConetxtImg">
@@ -239,7 +239,7 @@ export default function ADComponent() {
                     </span>
                 </ADBizContentBox>
                 <ADBizContentBox>
-                    <img src="./resources/img/ico-pro_05.png"></img>
+                    <img src="./resources/img/ico-pro_05.png" alt="사진"></img>
                     <h2>CDBIZ</h2>
                     <p>가상의 개인번호를 부여하여 통화연결</p>
                     <span className="ADConetxtImg">
@@ -247,7 +247,7 @@ export default function ADComponent() {
                     </span>
                 </ADBizContentBox>
                 <ADBizContentBox>
-                    <img src="./resources/img/ico-pro_05.png"></img>
+                    <img src="./resources/img/ico-pro_05.png" alt="사진"></img>
                     <h2>CDBIZ</h2>
                     <p>가상의 개인번호를 부여하여 통화연결</p>
                     <span className="ADConetxtImg">
@@ -255,7 +255,7 @@ export default function ADComponent() {
                     </span>
                 </ADBizContentBox>
                 <ADBizContentBox>
-                    <img src="./resources/img/ico-pro_05.png"></img>
+                    <img src="./resources/img/ico-pro_05.png" alt="사진"></img>
                     <h2>CDBIZ</h2>
                     <p>가상의 개인번호를 부여하여 통화연결</p>
                     <span className="ADConetxtImg">

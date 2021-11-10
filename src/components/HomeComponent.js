@@ -1,5 +1,4 @@
 import React from "react";
-import styled, { css, keyframes } from "styled-components";
 import ConsultingComponent from "./ConsultingComponent";
 import ContentComponent from "./ContentComponent";
 import FooterComponent from "./FooterComponent";

@@ -1,10 +1,10 @@
 import styled, { css, keyframes } from "styled-components";
-import { AiOutlineClose } from "react-icons/ai";
 import React, { useCallback } from "react";
 import CDBizContentComponent, { CDBizContentInsertComponent, CDBizContentDeleteComponent } from "./content/CDBizContentComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { resetSelector } from "../../modules/bizUrlSelector";
 import IBizContentComponent from "./content/IBizContentComponent";
+import MyClose from "../util/MyClose";
 
 const WrapAnimation = keyframes`
     from {
@@ -26,7 +26,7 @@ const WrapActionContent = styled.div`
     display: none;
 
     ${(props) => {
-        if (props.setVisible == true) {
+        if (props.setVisible === true) {
             return css`
                 border-radius: 0;
                 animation-duration: 1s;
@@ -62,24 +62,6 @@ const WhiteWrapActionContent = styled.div`
     }}
 `;
 
-const CancelWrapContent = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: end;
-    padding: 15px 10px;
-    box-sizing: border-box;
-`;
-
-const ProxyAiOutlineClose = styled(AiOutlineClose)`
-    display: block;
-    color: black;
-    font-size: 40px;
-
-    &:hover {
-        color: red;
-    }
-`;
-
 const BizSendWrapContent = styled.div`
     width: 100%;
     height: 100%;
@@ -108,14 +90,12 @@ function WrapActionContentComponent({ state, setState, bizName }) {
         <div className="WrapActionContentComponent">
             <WrapActionContent setVisible={state}>
                 <WhiteWrapActionContent setWidth={setWidthTrueFalse}>
-                    <CancelWrapContent>
-                        <ProxyAiOutlineClose onClick={onClickClose}></ProxyAiOutlineClose>
-                    </CancelWrapContent>
+                    <MyClose onClickClose={onClickClose}></MyClose>
                     <BizSendWrapContent id="BizSendWrapContent">
-                        {bizName.includes("CD BIZ") && setWidthTrueFalse == false && <CDBizContentComponent></CDBizContentComponent>}
+                        {bizName.includes("CD BIZ") && setWidthTrueFalse === false && <CDBizContentComponent></CDBizContentComponent>}
                         {bizName.includes("CD BIZ") && myState.url.includes("cd") && myState.url.includes("insert") && <CDBizContentInsertComponent></CDBizContentInsertComponent>}
                         {bizName.includes("CD BIZ") && myState.url.includes("cd") && myState.url.includes("delete") && <CDBizContentDeleteComponent></CDBizContentDeleteComponent>}
-                        {bizName.includes("I BIZ") && setWidthTrueFalse == false && <IBizContentComponent></IBizContentComponent>}
+                        {bizName.includes("I BIZ") && setWidthTrueFalse === false && <IBizContentComponent></IBizContentComponent>}
                     </BizSendWrapContent>
                 </WhiteWrapActionContent>
             </WrapActionContent>

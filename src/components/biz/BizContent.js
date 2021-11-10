@@ -1,21 +1,7 @@
 import React, { useCallback, useState } from "react";
-import styled, { css, keyframes } from "styled-components";
+import styled from "styled-components";
+import MyButton from "../util/MyButton";
 import WrapActionContentComponent from "./WrapActionContentComponent";
-
-const ButtonAnimation = keyframes`
-    from {
-        background-color: red;
-        color: white;
-        width: 230px;
-        
-    }
-    to {
-        background-color: red;
-        color: white;
-        width: 250px;
-        border-bottom: 2px solid black
-    }
-`;
 
 const Content = styled.div`
     width: 100%;
@@ -58,28 +44,6 @@ const ContentButtonDiv = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-`;
-
-const ContentButton = styled.button`
-    font-family: "NotoSansKR-Bold";
-    background-color: red;
-    width: 230px;
-    height: 60px;
-    padding: 15px 70px;
-    border: none;
-    border-radius: 30px;
-    font-size: 16px;
-    color: white;
-    cursor: pointer;
-    background-position: 0;
-
-    &:hover {
-        border-radius: 0;
-        animation-duration: 0.25s;
-        animation-timing-function: ease-out;
-        animation-name: ${ButtonAnimation};
-        animation-fill-mode: forwards;
-    }
 `;
 
 const ContentGrayBoxDiv = styled.div`
@@ -240,7 +204,7 @@ function BizContent({ children, contents, buttonAciton }) {
                 </ContentTextDiv>
                 <ContentButtonDiv>
                     <a href="#BizSendWrapContent">
-                        <ContentButton onClick={MyButtonActionOnClick}>서비스 이용</ContentButton>
+                        <MyButton onClick={MyButtonActionOnClick}>서비스 이용</MyButton>
                     </a>
                 </ContentButtonDiv>
                 <ContentButtonDiv>
@@ -278,7 +242,7 @@ function BizContent({ children, contents, buttonAciton }) {
                     <ContentTitle>WEB 서비스 기능 예시</ContentTitle>
                     <div className="ContentDiv">
                         <div className="ContentImageDiv">
-                            <img src="./resources/img/050_biz_ex.jpg" />
+                            <img src="./resources/img/050_biz_ex.jpg" alt="사진" />
                         </div>
                     </div>
                 </ContextFooterDiv>

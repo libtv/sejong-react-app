@@ -3,7 +3,6 @@ import React from "react";
 import FooterComponent from "../FooterComponent";
 import HeaderComponent from "../HeaderComponent";
 import BizHeader from "./BizHeader";
-import styled from "styled-components";
 import BizContent from "./BizContent";
 
 export default function CDBizComponent({ children, location, match }) {
