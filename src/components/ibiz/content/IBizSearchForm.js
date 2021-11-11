@@ -3,9 +3,11 @@ import MyClose from "../../util/MyClose";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { asyncDestinationSelect, asyncMentSelect, asyncScedualSelect, asyncVnsSelect } from "../../../modules/ibizReducer";
+import { asyncDestinationSelect, asyncMentSelect, asyncScedualSelect, asyncVnsSelect, endLoading, startLoading } from "../../../modules/ibizReducer";
 import IBizSearchOptionsForm from "./IBizSearchOptionsForm";
 import $ from "jquery";
+import Timeout from "../../util/Timeout";
+import { asyncDestinationRead, asyncMentRead, asyncScedualRead, asyncVnsRead } from "../../../modules/myCURD";
 
 const MyDiv = styled.div`
     position: absolute;
@@ -141,20 +143,27 @@ export default function IBizSearchForm({ onCancel, myState, multiCheckTrueFalse,
     }, [datas]);
 
     useEffect(async () => {
-        if (myState === "schedule") {
-            dispatch(asyncScedualSelect(loginstate.id, loginstate.loginmarker, loginstate.clientcode));
-            setData(loginstate.sceduallist);
-        } else if (myState === "vns") {
-            dispatch(asyncVnsSelect(loginstate.id, loginstate.loginmarker, loginstate.clientcode));
-            setData(loginstate.vnslist);
-        } else if (myState === "destination") {
-            dispatch(asyncDestinationSelect(loginstate.id, loginstate.loginmarker, loginstate.clientcode));
-            setData(loginstate.destinationlist);
-        } else if (myState === "ment") {
-            dispatch(asyncMentSelect(loginstate.id, loginstate.loginmarker, loginstate.clientcode));
-            setData(loginstate.mentlist);
+        dispatch(startLoading());
+
+        try {
+            if (myState === "schedule") {
+                const data = await asyncScedualRead(loginstate.id, loginstate.loginmarker, loginstate.clientcode);
+                setData(data.scheduleList);
+            } else if (myState === "vns") {
+                const data = await asyncVnsRead(loginstate.id, loginstate.loginmarker, loginstate.clientcode);
+                setData(data.vnsNumberList);
+            } else if (myState === "destination") {
+                const data = await asyncDestinationRead(loginstate.id, loginstate.loginmarker, loginstate.clientcode);
+                setData(data.calledNumberList);
+            } else if (myState === "ment") {
+                const data = await asyncMentRead(loginstate.id, loginstate.loginmarker, loginstate.clientcode);
+                setData(data.mentList);
+            }
+        } catch (err) {
+            alert(err);
         }
 
+        dispatch(endLoading());
         enterListenerEvents();
     }, []);
 

@@ -137,4 +137,25 @@ export const ContentCardDiv = styled.div`
         font-size: 10px;
         margin: 0;
     }
+
+    .JongsunPark {
+        display: flex;
+        flex-direction: row;
+    }
+    .JongsunParkFormData {
+        width: 30%;
+        padding: 35px 10px;
+        text-align: end;
+
+        h6 {
+            font-size: 15px;
+            padding: 0px 10px 52px 10px;
+        }
+    }
+
+    .SubmitDiv {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
 `;

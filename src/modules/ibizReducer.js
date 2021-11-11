@@ -1,4 +1,26 @@
 import { MyAxios } from "../components/util/MyAxios";
+import {
+    asyncDestinationCreate,
+    asyncDestinationRead,
+    asyncDestinationRemove,
+    asyncDestinationRevise,
+    asyncMentCreate,
+    asyncMentRead,
+    asyncMentRemove,
+    asyncMentRevise,
+    asyncScedualRead,
+    asyncSchedualCreate,
+    asyncSchedualRemove,
+    asyncSchedualRevise,
+    asyncSetRead,
+    asyncUserRead,
+    asyncUserRevise,
+    asyncVnsCreate,
+    asyncVnsRead,
+    asyncVnsRemove,
+    asyncVnsRevise,
+    loginRead,
+} from "./myCURD";
 
 //* action type *//
 const LOADING_IBIZ = "ibiz/LOADING";
@@ -12,15 +34,16 @@ const DESTINATIONSELECT_IBIZ = "ibiz/DESTINATION_SELECT";
 const VNSSELECT_IBIZ = "ibiz/VNS_SELECT";
 const VNSTABLESELECT_IBIZ = "ibiz/VNS_TABLE_SELECT";
 const SETSELECT_IBIZ = "ibiz/SET_SELECT";
+const USERSELECT_IBIZ = "ibiz/USER_SELECT";
 
 //* create action *//
-function startLoading() {
+export function startLoading() {
     return {
         type: LOADING_IBIZ,
     };
 }
 
-function endLoading() {
+export function endLoading() {
     return {
         type: ENDLOADING_IBIZ,
     };
@@ -51,17 +74,7 @@ export function asyncLogin(id, pwd, clientCode) {
         dispatch(startLoading());
 
         try {
-            let sequence = 0;
-            let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-            let postUrl = `/user/login?sequence=${sequence}&responseType=json`;
-            let body = {
-                userId: id,
-                userPwd: pwd,
-                clientCode: clientCode,
-                clientCodeType: "1",
-            };
-
-            const login_data = await MyAxios(sessionUrl, postUrl, body);
+            const login_data = await loginRead(id, pwd, clientCode);
 
             dispatch(endLoading());
             return dispatch(
@@ -102,21 +115,7 @@ export function asyncMentSelect(id, loginmarker, clientcode) {
         dispatch(startLoading());
 
         try {
-            let sequence = 0;
-            let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-            let postUrl = `/ment/select?sequence=${sequence}&responseType=json`;
-            let body = {
-                userId: id,
-                loginMarker: loginmarker,
-                clientCode: clientcode,
-                clientCodeType: "1",
-                mentIdx: "",
-                mentName: "",
-                mentDesc: "",
-            };
-
-            const mentSelect_data = await MyAxios(sessionUrl, postUrl, body);
-
+            const mentSelect_data = await asyncMentRead(id, loginmarker, clientcode);
             dispatch(endLoading());
             return dispatch(mentSelect(mentSelect_data.mentList));
         } catch (err) {
@@ -130,23 +129,8 @@ export function asyncMentSelect(id, loginmarker, clientcode) {
 export function asyncMentInsert(id, loginmarker, clientcode, mentName, mentDesc, uploadKey) {
     return async function (dispatch) {
         dispatch(startLoading());
-
         try {
-            let sequence = 0;
-            let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-            let postUrl = `/ment/insert?sequence=${sequence}&responseType=json`;
-            let body = {
-                userId: id,
-                loginMarker: loginmarker,
-                clientCode: clientcode,
-                clientCodeType: "1",
-                mentName: encodeURIComponent(mentName),
-                mentDesc: encodeURIComponent(mentDesc),
-                uploadKey: uploadKey,
-            };
-
-            await MyAxios(sessionUrl, postUrl, body);
-
+            await asyncMentCreate(id, loginmarker, clientcode, mentName, mentDesc, uploadKey);
             dispatch(endLoading());
             return dispatch(asyncMentSelect(id, loginmarker, clientcode));
         } catch (err) {
@@ -162,19 +146,7 @@ export function asyncMentDelete(id, loginmarker, clientcode, mentIdx) {
         dispatch(startLoading());
 
         try {
-            let sequence = 0;
-            let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-            let postUrl = `/ment/delete?sequence=${sequence}&responseType=json`;
-            let body = {
-                userId: id,
-                loginMarker: loginmarker,
-                clientCode: clientcode,
-                clientCodeType: "1",
-                mentIdx: mentIdx,
-            };
-
-            await MyAxios(sessionUrl, postUrl, body);
-
+            await asyncMentRemove(id, loginmarker, clientcode, mentIdx);
             dispatch(endLoading());
             return dispatch(asyncMentSelect(id, loginmarker, clientcode));
         } catch (err) {
@@ -190,21 +162,7 @@ export function asyncMentUpdate(id, loginmarker, clientcode, mentIdx, mentName, 
         dispatch(startLoading());
 
         try {
-            let sequence = 0;
-            let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-            let postUrl = `/ment/update?sequence=${sequence}&responseType=json`;
-            let body = {
-                userId: id,
-                loginMarker: loginmarker,
-                clientCode: clientcode,
-                clientCodeType: "1",
-                mentIdx: mentIdx,
-                mentName: encodeURIComponent(mentName),
-                mentDesc: encodeURIComponent(mentDesc),
-            };
-
-            await MyAxios(sessionUrl, postUrl, body);
-
+            await asyncMentRevise(id, loginmarker, clientcode, mentIdx, mentName, mentDesc);
             dispatch(endLoading());
             return dispatch(asyncMentSelect(id, loginmarker, clientcode));
         } catch (err) {
@@ -230,26 +188,7 @@ export function asyncScedualSelect(id, loginmarker, clientcode) {
     return async function (dispatch) {
         dispatch(startLoading());
         try {
-            let sequence = 0;
-            let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-            let postUrl = `/schedule/select?sequence=${sequence}&responseType=json`;
-            let body = {
-                userId: id,
-                loginMarker: loginmarker,
-                clientCode: clientcode,
-                clientCodeType: "1",
-                scheduleName: "",
-                scheduleType: "",
-                startDate: "",
-                endDate: "",
-                startTime: "",
-                endTime: "",
-                weekType: "",
-            };
-
-            console.log(`id : ${id} loginmarker : ${loginmarker} clientcode : ${clientcode}`);
-
-            const mentSelect_data = await MyAxios(sessionUrl, postUrl, body);
+            const mentSelect_data = await asyncScedualRead(id, loginmarker, clientcode);
 
             dispatch(endLoading());
             return dispatch(scedualSelect(mentSelect_data.scheduleList));
@@ -266,26 +205,7 @@ export function asyncSchedualInsert(id, loginmarker, clientcode, scheduleName, s
         dispatch(startLoading());
 
         try {
-            let sequence = 0;
-            let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-            let postUrl = `/schedule/insert?sequence=${sequence}&responseType=json`;
-            let body = {
-                userId: id,
-                loginMarker: loginmarker,
-                clientCode: clientcode,
-                clientCodeType: "1",
-
-                scheduleName: encodeURIComponent(scheduleName),
-                scheduleType: scheduleType,
-                startDate: startDate,
-                endDate: endDate,
-                startTime: startTime,
-                endTime: endTime,
-                weekType: weekType,
-            };
-
-            await MyAxios(sessionUrl, postUrl, body);
-
+            await asyncSchedualCreate(id, loginmarker, clientcode, scheduleName, scheduleType, startDate, endDate, startTime, endTime, weekType);
             dispatch(endLoading());
             return dispatch(asyncScedualSelect(id, loginmarker, clientcode));
         } catch (err) {
@@ -301,27 +221,7 @@ export function asyncSchedualUpdate(id, loginmarker, clientcode, scheduleIdx, sc
         dispatch(startLoading());
 
         try {
-            let sequence = 0;
-            let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-            let postUrl = `/schedule/update?sequence=${sequence}&responseType=json`;
-            let body = {
-                userId: id,
-                loginMarker: loginmarker,
-                clientCode: clientcode,
-                clientCodeType: "1",
-
-                scheduleIdx: scheduleIdx,
-                scheduleName: encodeURIComponent(scheduleName),
-                scheduleType: scheduleType,
-                startDate: startDate,
-                endDate: endDate,
-                startTime: startTime,
-                endTime: endTime,
-                weekType: weekType,
-            };
-
-            await MyAxios(sessionUrl, postUrl, body);
-
+            await asyncSchedualRevise(id, loginmarker, clientcode, scheduleIdx, scheduleName, scheduleType, startDate, endDate, startTime, endTime, weekType);
             dispatch(endLoading());
             return dispatch(asyncScedualSelect(id, loginmarker, clientcode));
         } catch (err) {
@@ -337,20 +237,7 @@ export function asyncSchedualDelete(id, loginmarker, clientcode, scheduleIdx) {
         dispatch(startLoading());
 
         try {
-            let sequence = 0;
-            let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-            let postUrl = `/schedule/delete?sequence=${sequence}&responseType=json`;
-            let body = {
-                userId: id,
-                loginMarker: loginmarker,
-                clientCode: clientcode,
-                clientCodeType: "1",
-
-                scheduleIdx: scheduleIdx,
-            };
-
-            await MyAxios(sessionUrl, postUrl, body);
-
+            await asyncSchedualRemove(id, loginmarker, clientcode, scheduleIdx);
             dispatch(endLoading());
             return dispatch(asyncScedualSelect(id, loginmarker, clientcode));
         } catch (err) {
@@ -376,20 +263,7 @@ export function asyncDestinationSelect(id, loginmarker, clientcode) {
     return async function (dispatch) {
         dispatch(startLoading());
         try {
-            let sequence = 0;
-            let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-            let postUrl = `/number/ibiz/called/select?sequence=${sequence}&responseType=json`;
-            let body = {
-                userId: id,
-                loginMarker: loginmarker,
-                clientCode: clientcode,
-                clientCodeType: "1",
-
-                calledNumber: "",
-            };
-
-            const destinationSelect_data = await MyAxios(sessionUrl, postUrl, body);
-
+            const destinationSelect_data = await asyncDestinationRead(id, loginmarker, clientcode);
             dispatch(endLoading());
             return dispatch(destinationSelect(destinationSelect_data.calledNumberList));
         } catch (err) {
@@ -405,20 +279,7 @@ export function asyncDestinationInsert(id, loginmarker, clientcode, calledNumber
         dispatch(startLoading());
 
         try {
-            let sequence = 0;
-            let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-            let postUrl = `/number/ibiz/called/insert?sequence=${sequence}&responseType=json`;
-            let body = {
-                userId: id,
-                loginMarker: loginmarker,
-                clientCode: clientcode,
-                clientCodeType: "1",
-
-                calledNumber: calledNumber,
-            };
-
-            await MyAxios(sessionUrl, postUrl, body);
-
+            await asyncDestinationCreate(id, loginmarker, clientcode, calledNumber);
             dispatch(endLoading());
             return dispatch(asyncDestinationSelect(id, loginmarker, clientcode));
         } catch (err) {
@@ -434,21 +295,7 @@ export function asyncDestinationUpdate(id, loginmarker, clientcode, calledIdx, c
         dispatch(startLoading());
 
         try {
-            let sequence = 0;
-            let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-            let postUrl = `/number/ibiz/called/update?sequence=${sequence}&responseType=json`;
-            let body = {
-                userId: id,
-                loginMarker: loginmarker,
-                clientCode: clientcode,
-                clientCodeType: "1",
-
-                calledIdx: calledIdx,
-                calledNumber: calledNumber,
-            };
-
-            await MyAxios(sessionUrl, postUrl, body);
-
+            await asyncDestinationRevise(id, loginmarker, clientcode, calledIdx, calledNumber);
             dispatch(endLoading());
             return dispatch(asyncDestinationSelect(id, loginmarker, clientcode));
         } catch (err) {
@@ -464,20 +311,7 @@ export function asyncDestinationDelete(id, loginmarker, clientcode, calledIdx) {
         dispatch(startLoading());
 
         try {
-            let sequence = 0;
-            let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-            let postUrl = `/number/ibiz/called/delete?sequence=${sequence}&responseType=json`;
-            let body = {
-                userId: id,
-                loginMarker: loginmarker,
-                clientCode: clientcode,
-                clientCodeType: "1",
-
-                calledIdx: calledIdx,
-            };
-
-            await MyAxios(sessionUrl, postUrl, body);
-
+            await asyncDestinationRemove(id, loginmarker, clientcode, calledIdx);
             dispatch(endLoading());
             return dispatch(asyncDestinationSelect(id, loginmarker, clientcode));
         } catch (err) {
@@ -503,20 +337,7 @@ export function asyncVnsSelect(id, loginmarker, clientcode) {
     return async function (dispatch) {
         dispatch(startLoading());
         try {
-            let sequence = 0;
-            let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-            let postUrl = `/number/ibiz/vns/select?sequence=${sequence}&responseType=json`;
-            let body = {
-                userId: id,
-                loginMarker: loginmarker,
-                clientCode: clientcode,
-                clientCodeType: "1",
-
-                vnsNumber: "",
-            };
-
-            const vnsSelect_data = await MyAxios(sessionUrl, postUrl, body);
-
+            const vnsSelect_data = await asyncVnsRead(id, loginmarker, clientcode);
             dispatch(endLoading());
 
             var list = [];
@@ -553,20 +374,7 @@ export function asyncVnsInsert(id, loginmarker, clientcode, vnsNumber) {
         dispatch(startLoading());
 
         try {
-            let sequence = 0;
-            let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-            let postUrl = `/number/ibiz/vns/insert?sequence=${sequence}&responseType=json`;
-            let body = {
-                userId: id,
-                loginMarker: loginmarker,
-                clientCode: clientcode,
-                clientCodeType: "1",
-
-                vnsNumber: vnsNumber,
-            };
-
-            await MyAxios(sessionUrl, postUrl, body);
-
+            await asyncVnsCreate(id, loginmarker, clientcode, vnsNumber);
             dispatch(endLoading());
             return dispatch(asyncVnsSelect(id, loginmarker, clientcode));
         } catch (err) {
@@ -582,22 +390,7 @@ export function asyncVnsUpdate(id, loginmarker, clientcode, vnsIdx, vnsNumber, d
         dispatch(startLoading());
 
         try {
-            let sequence = 0;
-            let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-            let postUrl = `/number/ibiz/vns/update?sequence=${sequence}&responseType=json`;
-            let body = {
-                userId: id,
-                loginMarker: loginmarker,
-                clientCode: clientcode,
-                clientCodeType: "1",
-
-                vnsIdx: vnsIdx,
-                vnsNumber: vnsNumber,
-                defaultSetIdx: defaultSetIdx,
-            };
-
-            await MyAxios(sessionUrl, postUrl, body);
-
+            await asyncVnsRevise(id, loginmarker, clientcode, vnsIdx, vnsNumber, defaultSetIdx);
             dispatch(endLoading());
             return dispatch(asyncVnsSelect(id, loginmarker, clientcode));
         } catch (err) {
@@ -613,20 +406,7 @@ export function asyncVnsDelete(id, loginmarker, clientcode, vnsIdx) {
         dispatch(startLoading());
 
         try {
-            let sequence = 0;
-            let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-            let postUrl = `/number/ibiz/vns/delete?sequence=${sequence}&responseType=json`;
-            let body = {
-                userId: id,
-                loginMarker: loginmarker,
-                clientCode: clientcode,
-                clientCodeType: "1",
-
-                vnsIdx: vnsIdx,
-            };
-
-            await MyAxios(sessionUrl, postUrl, body);
-
+            await asyncVnsRemove(id, loginmarker, clientcode, vnsIdx);
             dispatch(endLoading());
             return dispatch(asyncVnsSelect(id, loginmarker, clientcode));
         } catch (err) {
@@ -636,6 +416,10 @@ export function asyncVnsDelete(id, loginmarker, clientcode, vnsIdx) {
         }
     };
 }
+
+//******************//
+//! set area *//
+//******************//
 
 function setSelect(setList) {
     return {
@@ -648,24 +432,8 @@ export function asyncSetSelect(id, loginmarker, clientcode) {
     return async function (dispatch) {
         dispatch(startLoading());
         try {
-            let sequence = 0;
-            let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-            let postUrl = `/set/select?sequence=${sequence}&responseType=json`;
-            let body = {
-                userId: id,
-                loginMarker: loginmarker,
-                clientCode: clientcode,
-                clientCodeType: "1",
-
-                setIdx: "",
-                setName: "",
-                vnsNumberSetIdx: "",
-            };
-
-            const setSelect_data = await MyAxios(sessionUrl, postUrl, body);
-
+            const setSelect_data = await asyncSetRead(id, loginmarker, clientcode);
             dispatch(endLoading());
-            console.log(setSelect_data);
             dispatch(setSelect(setSelect_data.setList));
         } catch (err) {
             alert(err);
@@ -674,6 +442,53 @@ export function asyncSetSelect(id, loginmarker, clientcode) {
         }
     };
 }
+
+//******************//
+//! user area *//
+//******************//
+
+function userSelect(userList) {
+    return {
+        type: USERSELECT_IBIZ,
+        userlist: userList,
+    };
+}
+
+export function asyncUserSelect(id, loginmarker, clientcode) {
+    return async function (dispatch) {
+        dispatch(startLoading());
+        try {
+            const userSelect_data = await asyncUserRead(id, loginmarker, clientcode);
+            dispatch(endLoading());
+            dispatch(userSelect(userSelect_data.user));
+        } catch (err) {
+            alert(err);
+            dispatch(endLoading());
+            return dispatch(logout());
+        }
+    };
+}
+
+export function asyncUserUpdate(id, loginmarker, clientcode, userName, userPhone, newUserPwd) {
+    return async function (dispatch) {
+        dispatch(startLoading());
+
+        try {
+            await asyncUserRevise(id, loginmarker, clientcode, userName, userPhone, newUserPwd);
+            dispatch(endLoading());
+            alert("새로운 정보롤 업데이트가 완료되었습니다. 다시 로그인해주시기 바랍니다.");
+            return dispatch(logout());
+        } catch (err) {
+            alert(err);
+            dispatch(endLoading());
+            return dispatch(logout());
+        }
+    };
+}
+
+//******************//
+//! default area *//
+//******************//
 
 //* initialize const variable *//
 const initializeState = {
@@ -689,6 +504,7 @@ const initializeState = {
     vnslist: "",
     vnstablelist: "",
     setlist: "",
+    userlist: "",
 };
 
 //* reducer *//
@@ -749,6 +565,12 @@ export default function ibizReducer(state = initializeState, action) {
             return {
                 ...state,
                 setlist: action.setlist,
+            };
+
+        case USERSELECT_IBIZ:
+            return {
+                ...state,
+                userlist: action.userlist,
             };
         default:
             return state;

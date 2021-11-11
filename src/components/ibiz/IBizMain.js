@@ -11,6 +11,7 @@ import IBizSchedualContent from "./content/IBizSchedualContent.js";
 import IBizDestinationContent from "./content/IBizDestinationContent";
 import IBizVNSContent from "./content/IBizVNSContent";
 import IBizSetContent from "./content/IBizSetContent";
+import IBizAccountContent from "./content/IBizAccountContent";
 
 const IBizWrap = styled.div`
     width: 100%;
@@ -50,7 +51,7 @@ export default function IBizMain() {
                 {state.select === "schedual" && <IBizSchedualContent>schedual</IBizSchedualContent>}
                 {state.select === "ment" && <IBizMentContent>ment</IBizMentContent>}
                 {state.select === "ibiz" && <IBizSetContent>ibiz</IBizSetContent>}
-                {state.select === "account" && <div>account</div>}
+                {state.select === "account" && <IBizAccountContent>account</IBizAccountContent>}
             </IBizWrap>
         </div>
     );

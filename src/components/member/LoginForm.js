@@ -114,7 +114,7 @@ export default function LoginForm({ history, location }) {
                             <input type={"text"} placeholder="ID" id="id" defaultValue={"naver_t"}></input>
                         </MyInput>
                         <MyInput>
-                            <input type={"text"} placeholder="PassWord" id="password" defaultValue={"qnrlqnrk123"}></input>
+                            <input type={"password"} placeholder="PassWord" id="password" defaultValue={"qnrlqnrk123"}></input>
                         </MyInput>
                         <MyInput>
                             <input type={"text"} placeholder="VNS Number" id="vnsnumber" defaultValue={"402"}></input>
