@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { ContentWrap, ContentBodyDiv, ContentCardDiv, ContentHeaderDivTitle } from "../../util/MyCard";
 
 import MyButton from "../../util/MyButton";
@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { asyncSetSelect } from "../../../modules/ibizReducer";
 import IBizSetTable from "./IBizSetTable";
 import styled from "styled-components";
+import IBizSetUpdateForm from "./IBizSetUpdateForm";
 
 const Separator = styled.div`
     border-bottom: 2px solid rgba(24, 24, 24, 0.5);
@@ -30,6 +31,12 @@ export default function IBizSetContent() {
         setState(idx);
     };
 
+    const [insert, setInsert] = useState(false);
+
+    const onChangeState = useCallback(() => {
+        setInsert(!insert);
+    });
+
     return (
         <ContentWrap>
             <ContentHeaderDivTitle>Scheduel</ContentHeaderDivTitle>
@@ -38,7 +45,8 @@ export default function IBizSetContent() {
                 <ContentCardDiv>
                     <h3>Insert iBiz</h3>
                     <div className="FormData">
-                        <MyButton>Insert</MyButton>
+                        {insert === true && <IBizSetUpdateForm onChangeState={onChangeState} setIdx={""} type={"INSERT"}></IBizSetUpdateForm>}
+                        <MyButton onClick={onChangeState}>Insert</MyButton>
                     </div>
                 </ContentCardDiv>
 

@@ -110,7 +110,7 @@ function IBizContentComponent() {
                 <IBizTitleContent>I Biz</IBizTitleContent>
                 <IBizFormContent>
                     <MyButton mColor="#ffdc00">
-                        <MyLink to="/member" color={"black"}>
+                        <MyLink to="/register" color={"black"}>
                             회원가입
                         </MyLink>
                     </MyButton>

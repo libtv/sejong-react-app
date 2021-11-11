@@ -424,6 +424,80 @@ export async function asyncSetRead(id, loginmarker, clientcode) {
     }
 }
 
+export async function asyncSetCreate(id, loginmarker, clientcode, setName, setType, scheduleSetIdx, vnsNumberSetIdx, calledNumberSetList, mentSetList) {
+    try {
+        let sequence = 0;
+        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
+        let postUrl = `/set/insert?sequence=${sequence}&responseType=json`;
+        let body = {
+            userId: id,
+            loginMarker: loginmarker,
+            clientCode: clientcode,
+            clientCodeType: "1",
+
+            setName: encodeURIComponent(setName),
+            setType: setType,
+            scheduleSetIdx: scheduleSetIdx,
+            vnsNumberSetIdx: vnsNumberSetIdx,
+            calledNumberSetList: calledNumberSetList,
+            mentSetList: mentSetList,
+        };
+
+        const data = await MyAxios(sessionUrl, postUrl, body);
+        return data;
+    } catch (err) {
+        throw new Error(err);
+    }
+}
+
+export async function asyncSetRevise(id, loginmarker, clientcode, setIdx, setName, setType, scheduleSetIdx, vnsNumberSetIdx, calledNumberSetList, mentSetList) {
+    try {
+        let sequence = 0;
+        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
+        let postUrl = `/set/update?sequence=${sequence}&responseType=json`;
+        let body = {
+            userId: id,
+            loginMarker: loginmarker,
+            clientCode: clientcode,
+            clientCodeType: "1",
+
+            setIdx: setIdx,
+            setName: encodeURIComponent(setName),
+            setType: setType,
+            scheduleSetIdx: scheduleSetIdx,
+            vnsNumberSetIdx: vnsNumberSetIdx,
+            calledNumberSetList: calledNumberSetList,
+            mentSetList: mentSetList,
+        };
+
+        const data = await MyAxios(sessionUrl, postUrl, body);
+        return data;
+    } catch (err) {
+        throw new Error(err);
+    }
+}
+
+export async function asyncSetRemove(id, loginmarker, clientcode, setIdx) {
+    try {
+        let sequence = 0;
+        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
+        let postUrl = `/set/delete?sequence=${sequence}&responseType=json`;
+        let body = {
+            userId: id,
+            loginMarker: loginmarker,
+            clientCode: clientcode,
+            clientCodeType: "1",
+
+            setIdx: setIdx,
+        };
+
+        const data = await MyAxios(sessionUrl, postUrl, body);
+        return data;
+    } catch (err) {
+        throw new Error(err);
+    }
+}
+
 //******************//
 //! account area *//
 //******************//
@@ -479,6 +553,28 @@ export async function asyncUserRevise(id, loginmarker, clientcode, userName, use
         };
 
         data = await MyAxios(sessionUrl, postUrl, body);
+        return data;
+    } catch (err) {
+        throw new Error(err);
+    }
+}
+
+export async function asynUserCreate(id, pwd, clientcode, userName, userPhone) {
+    try {
+        let sequence = 0;
+        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
+        let postUrl = `/user/join?sequence=${sequence}&responseType=json`;
+        let body = {
+            userId: id,
+            userPwd: pwd,
+            clientCode: clientcode,
+            clientCodeType: "1",
+
+            userName: encodeURIComponent(userName),
+            userPhone: encodeURIComponent(userPhone),
+        };
+
+        const data = await MyAxios(sessionUrl, postUrl, body);
         return data;
     } catch (err) {
         throw new Error(err);

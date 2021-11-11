@@ -1,4 +1,3 @@
-import { MyAxios } from "../components/util/MyAxios";
 import {
     asyncDestinationCreate,
     asyncDestinationRead,
@@ -12,13 +11,17 @@ import {
     asyncSchedualCreate,
     asyncSchedualRemove,
     asyncSchedualRevise,
+    asyncSetCreate,
     asyncSetRead,
+    asyncSetRemove,
+    asyncSetRevise,
     asyncUserRead,
     asyncUserRevise,
     asyncVnsCreate,
     asyncVnsRead,
     asyncVnsRemove,
     asyncVnsRevise,
+    asynUserCreate,
     loginRead,
 } from "./myCURD";
 
@@ -443,6 +446,55 @@ export function asyncSetSelect(id, loginmarker, clientcode) {
     };
 }
 
+export function asyncSetInsert(id, loginmarker, clientcode, setName, setType, scheduleSetIdx, vnsNumberSetIdx, calledNumberSetList, mentSetList) {
+    return async function (dispatch) {
+        dispatch(startLoading());
+
+        try {
+            await asyncSetCreate(id, loginmarker, clientcode, setName, setType, scheduleSetIdx, vnsNumberSetIdx, calledNumberSetList, mentSetList);
+            dispatch(endLoading());
+            return dispatch(asyncSetSelect(id, loginmarker, clientcode));
+        } catch (err) {
+            alert(err);
+            dispatch(endLoading());
+            return dispatch(logout());
+        }
+    };
+}
+
+export function asyncSetUpdate(id, loginmarker, clientcode, setIdx, setName, setType, scheduleSetIdx, vnsNumberSetIdx, calledNumberSetList, mentSetList) {
+    return async function (dispatch) {
+        dispatch(startLoading());
+
+        try {
+            dispatch(setSelect(""));
+            await asyncSetRevise(id, loginmarker, clientcode, setIdx, setName, setType, scheduleSetIdx, vnsNumberSetIdx, calledNumberSetList, mentSetList);
+            dispatch(endLoading());
+            return dispatch(asyncSetSelect(id, loginmarker, clientcode));
+        } catch (err) {
+            alert(err);
+            dispatch(endLoading());
+            return dispatch(logout());
+        }
+    };
+}
+
+export function asyncSetDelete(id, loginmarker, clientcode, setIdx) {
+    return async function (dispatch) {
+        dispatch(startLoading());
+
+        try {
+            await asyncSetRemove(id, loginmarker, clientcode, setIdx);
+            dispatch(endLoading());
+            return dispatch(asyncSetSelect(id, loginmarker, clientcode));
+        } catch (err) {
+            alert(err);
+            dispatch(endLoading());
+            return dispatch(logout());
+        }
+    };
+}
+
 //******************//
 //! user area *//
 //******************//
@@ -482,6 +534,25 @@ export function asyncUserUpdate(id, loginmarker, clientcode, userName, userPhone
             alert(err);
             dispatch(endLoading());
             return dispatch(logout());
+        }
+    };
+}
+
+export function asyncUserInsert(id, pwd, clientCode, userName, userPhone) {
+    return async function (dispatch) {
+        dispatch(startLoading());
+
+        try {
+            const data = await asynUserCreate(id, pwd, clientCode, userName, userPhone);
+            if (data.result.resultCode === "00") {
+                alert("회원가입이 완료되었습니다.");
+            } else {
+                alert(data.result.resultMessage);
+            }
+            dispatch(endLoading());
+        } catch (err) {
+            alert(err);
+            dispatch(endLoading());
         }
     };
 }

@@ -6,6 +6,7 @@ import IBizComponent from "./components/biz/IBizComponent";
 import { createGlobalStyle } from "styled-components";
 import IBizMain from "./components/ibiz/IBizMain";
 import LoginForm from "./components/member/LoginForm";
+import RegisterForm from "./components/member/RegisterForm";
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -25,6 +26,7 @@ function App() {
             <Route path={"/ibiz"} component={IBizComponent} />
             <Route path={"/main"} component={IBizMain} />
             <Route path={"/member"} component={LoginForm} />
+            <Route path={"/register"} component={RegisterForm} />
         </div>
     );
 }
