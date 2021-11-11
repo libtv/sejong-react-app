@@ -1,13 +1,38 @@
 import { MyAxios } from "../components/util/MyAxios";
+import {
+    ACCOUNT_CREATE_URL,
+    ACCOUNT_READ_URL,
+    ACCOUNT_REVISE_PASSWORD_URL,
+    ACCOUNT_REVISE_URL,
+    DESTINATION_CREATE_URL,
+    DESTINATION_READ_URL,
+    DESTINATION_REMOVE_URL,
+    DESTINATION_REVISE_URL,
+    LOGIN_URL,
+    MENT_CREATE_URL,
+    MENT_READ_URL,
+    MENT_REMOVE_URL,
+    MENT_REVISE_URL,
+    SCHEDUAL_CREATE_URL,
+    SCHEDUAL_READ_URL,
+    SCHEDUAL_REMOVE_URL,
+    SCHEDUAL_REVISE_URL,
+    SESSION_URL,
+    SET_CREATE_URL,
+    SET_READ_URL,
+    SET_REMOVE_URL,
+    SET_REVISE_URL,
+    VNS_CREATE_URL,
+    VNS_READ_URL,
+    VNS_REMOVE_URL,
+    VNS_REVISE_URL,
+} from "../const/const";
 
 //******************//
 //!!!! login area !!!//
 //******************//
 export async function loginRead(id, pwd, clientCode) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/user/login?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             userPwd: pwd,
@@ -15,7 +40,7 @@ export async function loginRead(id, pwd, clientCode) {
             clientCodeType: "1",
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, LOGIN_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -28,9 +53,6 @@ export async function loginRead(id, pwd, clientCode) {
 
 export async function asyncMentRead(id, loginmarker, clientcode) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/ment/select?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             loginMarker: loginmarker,
@@ -41,7 +63,7 @@ export async function asyncMentRead(id, loginmarker, clientcode) {
             mentDesc: "",
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, MENT_READ_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -50,9 +72,6 @@ export async function asyncMentRead(id, loginmarker, clientcode) {
 
 export async function asyncMentCreate(id, loginmarker, clientcode, mentName, mentDesc, uploadKey) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/ment/insert?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             loginMarker: loginmarker,
@@ -63,7 +82,7 @@ export async function asyncMentCreate(id, loginmarker, clientcode, mentName, men
             uploadKey: uploadKey,
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, MENT_CREATE_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -72,9 +91,6 @@ export async function asyncMentCreate(id, loginmarker, clientcode, mentName, men
 
 export async function asyncMentRemove(id, loginmarker, clientcode, mentIdx) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/ment/delete?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             loginMarker: loginmarker,
@@ -83,7 +99,7 @@ export async function asyncMentRemove(id, loginmarker, clientcode, mentIdx) {
             mentIdx: mentIdx,
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, MENT_REMOVE_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -92,9 +108,6 @@ export async function asyncMentRemove(id, loginmarker, clientcode, mentIdx) {
 
 export async function asyncMentRevise(id, loginmarker, clientcode, mentIdx, mentName, mentDesc) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/ment/update?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             loginMarker: loginmarker,
@@ -105,7 +118,7 @@ export async function asyncMentRevise(id, loginmarker, clientcode, mentIdx, ment
             mentDesc: encodeURIComponent(mentDesc),
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, MENT_REVISE_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -118,9 +131,6 @@ export async function asyncMentRevise(id, loginmarker, clientcode, mentIdx, ment
 
 export async function asyncScedualRead(id, loginmarker, clientcode) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/schedule/select?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             loginMarker: loginmarker,
@@ -135,7 +145,7 @@ export async function asyncScedualRead(id, loginmarker, clientcode) {
             weekType: "",
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, SCHEDUAL_READ_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -144,9 +154,6 @@ export async function asyncScedualRead(id, loginmarker, clientcode) {
 
 export async function asyncSchedualCreate(id, loginmarker, clientcode, scheduleName, scheduleType, startDate, endDate, startTime, endTime, weekType) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/schedule/insert?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             loginMarker: loginmarker,
@@ -162,7 +169,7 @@ export async function asyncSchedualCreate(id, loginmarker, clientcode, scheduleN
             weekType: weekType,
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, SCHEDUAL_CREATE_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -171,9 +178,6 @@ export async function asyncSchedualCreate(id, loginmarker, clientcode, scheduleN
 
 export async function asyncSchedualRevise(id, loginmarker, clientcode, scheduleIdx, scheduleName, scheduleType, startDate, endDate, startTime, endTime, weekType) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/schedule/update?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             loginMarker: loginmarker,
@@ -190,7 +194,7 @@ export async function asyncSchedualRevise(id, loginmarker, clientcode, scheduleI
             weekType: weekType,
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, SCHEDUAL_REVISE_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -199,9 +203,6 @@ export async function asyncSchedualRevise(id, loginmarker, clientcode, scheduleI
 
 export async function asyncSchedualRemove(id, loginmarker, clientcode, scheduleIdx) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/schedule/delete?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             loginMarker: loginmarker,
@@ -211,7 +212,7 @@ export async function asyncSchedualRemove(id, loginmarker, clientcode, scheduleI
             scheduleIdx: scheduleIdx,
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, SCHEDUAL_REMOVE_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -224,9 +225,6 @@ export async function asyncSchedualRemove(id, loginmarker, clientcode, scheduleI
 
 export async function asyncDestinationRead(id, loginmarker, clientcode) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/number/ibiz/called/select?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             loginMarker: loginmarker,
@@ -236,7 +234,7 @@ export async function asyncDestinationRead(id, loginmarker, clientcode) {
             calledNumber: "",
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, DESTINATION_READ_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -245,9 +243,6 @@ export async function asyncDestinationRead(id, loginmarker, clientcode) {
 
 export async function asyncDestinationCreate(id, loginmarker, clientcode, calledNumber) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/number/ibiz/called/insert?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             loginMarker: loginmarker,
@@ -257,7 +252,7 @@ export async function asyncDestinationCreate(id, loginmarker, clientcode, called
             calledNumber: calledNumber,
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, DESTINATION_CREATE_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -266,9 +261,6 @@ export async function asyncDestinationCreate(id, loginmarker, clientcode, called
 
 export async function asyncDestinationRevise(id, loginmarker, clientcode, calledIdx, calledNumber) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/number/ibiz/called/update?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             loginMarker: loginmarker,
@@ -279,7 +271,7 @@ export async function asyncDestinationRevise(id, loginmarker, clientcode, called
             calledNumber: calledNumber,
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, DESTINATION_REVISE_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -288,9 +280,6 @@ export async function asyncDestinationRevise(id, loginmarker, clientcode, called
 
 export async function asyncDestinationRemove(id, loginmarker, clientcode, calledIdx) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/number/ibiz/called/delete?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             loginMarker: loginmarker,
@@ -300,7 +289,7 @@ export async function asyncDestinationRemove(id, loginmarker, clientcode, called
             calledIdx: calledIdx,
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, DESTINATION_REMOVE_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -313,9 +302,6 @@ export async function asyncDestinationRemove(id, loginmarker, clientcode, called
 
 export async function asyncVnsRead(id, loginmarker, clientcode) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/number/ibiz/vns/select?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             loginMarker: loginmarker,
@@ -325,7 +311,7 @@ export async function asyncVnsRead(id, loginmarker, clientcode) {
             vnsNumber: "",
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, VNS_READ_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -334,9 +320,6 @@ export async function asyncVnsRead(id, loginmarker, clientcode) {
 
 export async function asyncVnsCreate(id, loginmarker, clientcode, vnsNumber) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/number/ibiz/vns/insert?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             loginMarker: loginmarker,
@@ -346,7 +329,7 @@ export async function asyncVnsCreate(id, loginmarker, clientcode, vnsNumber) {
             vnsNumber: vnsNumber,
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, VNS_CREATE_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -355,9 +338,6 @@ export async function asyncVnsCreate(id, loginmarker, clientcode, vnsNumber) {
 
 export async function asyncVnsRevise(id, loginmarker, clientcode, vnsIdx, vnsNumber, defaultSetIdx) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/number/ibiz/vns/update?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             loginMarker: loginmarker,
@@ -369,7 +349,7 @@ export async function asyncVnsRevise(id, loginmarker, clientcode, vnsIdx, vnsNum
             defaultSetIdx: defaultSetIdx,
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, VNS_REVISE_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -378,9 +358,6 @@ export async function asyncVnsRevise(id, loginmarker, clientcode, vnsIdx, vnsNum
 
 export async function asyncVnsRemove(id, loginmarker, clientcode, vnsIdx) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/number/ibiz/vns/delete?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             loginMarker: loginmarker,
@@ -390,7 +367,7 @@ export async function asyncVnsRemove(id, loginmarker, clientcode, vnsIdx) {
             vnsIdx: vnsIdx,
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, VNS_REMOVE_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -403,9 +380,6 @@ export async function asyncVnsRemove(id, loginmarker, clientcode, vnsIdx) {
 
 export async function asyncSetRead(id, loginmarker, clientcode) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/set/select?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             loginMarker: loginmarker,
@@ -417,7 +391,7 @@ export async function asyncSetRead(id, loginmarker, clientcode) {
             vnsNumberSetIdx: "",
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, SET_READ_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -426,9 +400,6 @@ export async function asyncSetRead(id, loginmarker, clientcode) {
 
 export async function asyncSetCreate(id, loginmarker, clientcode, setName, setType, scheduleSetIdx, vnsNumberSetIdx, calledNumberSetList, mentSetList) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/set/insert?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             loginMarker: loginmarker,
@@ -443,7 +414,7 @@ export async function asyncSetCreate(id, loginmarker, clientcode, setName, setTy
             mentSetList: mentSetList,
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, SET_CREATE_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -452,9 +423,6 @@ export async function asyncSetCreate(id, loginmarker, clientcode, setName, setTy
 
 export async function asyncSetRevise(id, loginmarker, clientcode, setIdx, setName, setType, scheduleSetIdx, vnsNumberSetIdx, calledNumberSetList, mentSetList) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/set/update?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             loginMarker: loginmarker,
@@ -470,7 +438,7 @@ export async function asyncSetRevise(id, loginmarker, clientcode, setIdx, setNam
             mentSetList: mentSetList,
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, SET_REVISE_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -479,9 +447,6 @@ export async function asyncSetRevise(id, loginmarker, clientcode, setIdx, setNam
 
 export async function asyncSetRemove(id, loginmarker, clientcode, setIdx) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/set/delete?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             loginMarker: loginmarker,
@@ -491,7 +456,7 @@ export async function asyncSetRemove(id, loginmarker, clientcode, setIdx) {
             setIdx: setIdx,
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, SET_REMOVE_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -504,9 +469,6 @@ export async function asyncSetRemove(id, loginmarker, clientcode, setIdx) {
 
 export async function asyncUserRead(id, loginmarker, clientcode) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/user/select?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             loginMarker: loginmarker,
@@ -514,7 +476,7 @@ export async function asyncUserRead(id, loginmarker, clientcode) {
             clientCodeType: "1",
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, ACCOUNT_READ_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -523,9 +485,6 @@ export async function asyncUserRead(id, loginmarker, clientcode) {
 
 export async function asyncUserRevise(id, loginmarker, clientcode, userName, userPhone, newUserPwd) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/user/change/info?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             loginMarker: loginmarker,
@@ -536,13 +495,12 @@ export async function asyncUserRevise(id, loginmarker, clientcode, userName, use
             userPhone: encodeURIComponent(userPhone),
         };
 
-        let data = await MyAxios(sessionUrl, postUrl, body);
+        let data = await MyAxios(SESSION_URL, ACCOUNT_REVISE_URL, body);
 
         if (data.result.resultCode !== "00") {
             throw new Error(data.result.resultMessage);
         }
 
-        postUrl = `/user/change/password?sequence=${sequence}&responseType=json`;
         body = {
             userId: id,
             loginMarker: loginmarker,
@@ -552,7 +510,7 @@ export async function asyncUserRevise(id, loginmarker, clientcode, userName, use
             newUserPwd: newUserPwd,
         };
 
-        data = await MyAxios(sessionUrl, postUrl, body);
+        data = await MyAxios(SESSION_URL, ACCOUNT_REVISE_PASSWORD_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
@@ -561,9 +519,6 @@ export async function asyncUserRevise(id, loginmarker, clientcode, userName, use
 
 export async function asynUserCreate(id, pwd, clientcode, userName, userPhone) {
     try {
-        let sequence = 0;
-        let sessionUrl = `/sequence/select?sequence=${sequence}&responseType=json`;
-        let postUrl = `/user/join?sequence=${sequence}&responseType=json`;
         let body = {
             userId: id,
             userPwd: pwd,
@@ -574,7 +529,7 @@ export async function asynUserCreate(id, pwd, clientcode, userName, userPhone) {
             userPhone: encodeURIComponent(userPhone),
         };
 
-        const data = await MyAxios(sessionUrl, postUrl, body);
+        const data = await MyAxios(SESSION_URL, ACCOUNT_CREATE_URL, body);
         return data;
     } catch (err) {
         throw new Error(err);
