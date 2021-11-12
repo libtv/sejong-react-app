@@ -451,6 +451,7 @@ export function asyncSetInsert(id, loginmarker, clientcode, setName, setType, sc
         dispatch(startLoading());
 
         try {
+            dispatch(setSelect(""));
             await asyncSetCreate(id, loginmarker, clientcode, setName, setType, scheduleSetIdx, vnsNumberSetIdx, calledNumberSetList, mentSetList);
             dispatch(endLoading());
             return dispatch(asyncSetSelect(id, loginmarker, clientcode));
@@ -484,6 +485,7 @@ export function asyncSetDelete(id, loginmarker, clientcode, setIdx) {
         dispatch(startLoading());
 
         try {
+            dispatch(setSelect(""));
             await asyncSetRemove(id, loginmarker, clientcode, setIdx);
             dispatch(endLoading());
             return dispatch(asyncSetSelect(id, loginmarker, clientcode));
