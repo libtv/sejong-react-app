@@ -6,15 +6,18 @@ import IBizMentTable from "./IBizMentTable";
 import { asyncMentInsert, asyncMentSelect } from "../../../modules/ibizReducer";
 import $ from "jquery";
 import { ContentWrap, ContentBodyDiv, ContentCardDiv, ContentHeaderDivTitle } from "../../util/MyCard";
+import axios from "axios";
+import { asyncMentUpload } from "../../../modules/myCURD";
 
 export default function IBizMentContent() {
     const [drag, setDrag] = useState(false);
     const dragRef = useRef();
     const [file, setFile] = useState({
         filename: "",
+        myFile: "",
     });
 
-    const { filename } = file;
+    const { filename, myFile } = file;
 
     const onChangeFiles = useCallback((e) => {
         let selectFiles;
@@ -25,7 +28,7 @@ export default function IBizMentContent() {
             selectFiles = e.target.files;
         }
 
-        setFile({ filename: selectFiles[0].name });
+        setFile({ filename: selectFiles[0].name, myFile: selectFiles });
     }, []);
 
     const handleDragIn = useCallback((e) => {
@@ -94,16 +97,23 @@ export default function IBizMentContent() {
 
     const onClickMentUpload = async (e) => {
         e.preventDefault();
-        // var uploadFile = $("#fileUpload").prop("files")[0];
-
-        // const data = await axios.post(`/upload/ment/user/${loginstate.id}/clientCode/${loginstate.clientcode}/clientCodeType/1/insert`, uploadFile, {
-        //     headers: {
-        //         "content-type": "blob.type",
-        //     },
-        // });
         const mentName = $("#mentName").val();
         const mentDesc = $("#mentDesc").val();
-        const uploadKey = "7mMB0Fxsz0AyUR38";
+        let uploadKey;
+
+        if (mentName === "" || mentDesc === "" || myFile[0] === "" || myFile[0] === null) {
+            return alert("값을 넣어주세요.");
+        }
+
+        try {
+            const response = await asyncMentUpload(loginstate.id, loginstate.clientcode, myFile[0]);
+            if (response.result.resultCode !== "00") {
+                return alert(response.result.resultMessage);
+            }
+            uploadKey = response.result.resultMessage;
+        } catch (err) {
+            return alert(err);
+        }
 
         dispatch(asyncMentInsert(loginstate.id, loginstate.loginmarker, loginstate.clientcode, mentName, mentDesc, uploadKey));
     };

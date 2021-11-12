@@ -1,6 +1,6 @@
 const SERVER_IP = "";
 const SERVER_PORT = "";
-const SERVER_INFO = SERVER_IP ? `${SERVER_IP}:${SERVER_PORT}` : "";
+export const SERVER_INFO = SERVER_IP ? `http://${SERVER_IP}:${SERVER_PORT}` : "";
 const SEQUENCE = 0;
 
 //* export const area */

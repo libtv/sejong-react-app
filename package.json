@@ -49,6 +49,5 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
-    },
-    "proxy": "http://203.240.153.202:57070"
+    }
 }

@@ -27,6 +27,8 @@ import {
     VNS_REMOVE_URL,
     VNS_REVISE_URL,
 } from "../const/const";
+import axios from "axios";
+import { SERVER_INFO } from "../const/const";
 
 //******************//
 //!!!! login area !!!//
@@ -50,6 +52,20 @@ export async function loginRead(id, pwd, clientCode) {
 //******************//
 //!!!! ment area !!!//
 //******************//
+
+export async function asyncMentUpload(id, clientcode, file) {
+    try {
+        const data = await axios.post(`${SERVER_INFO}/upload/ment/user/${id}/clientCode/${clientcode}/clientCodeType/1/insert`, file, {
+            headers: {
+                "content-type": "application/octet-stream",
+            },
+        });
+
+        return data.data;
+    } catch (err) {
+        throw new Error(err);
+    }
+}
 
 export async function asyncMentRead(id, loginmarker, clientcode) {
     try {
