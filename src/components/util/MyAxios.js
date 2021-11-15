@@ -17,7 +17,7 @@ export async function postAxios(url, body, sessionKey) {
         method: "POST",
         url: url,
         timeout: 3000,
-        data: sendData,
+        data: [sendData],
     });
 
     return response.data;

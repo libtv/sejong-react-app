@@ -4,6 +4,10 @@ import {
     ACCOUNT_READ_URL,
     ACCOUNT_REVISE_PASSWORD_URL,
     ACCOUNT_REVISE_URL,
+    CBIZ_DELETE_URL,
+    CBIZ_INSERT_URL,
+    DBIZ_DELETE_URL,
+    DBIZ_INSERT_URL,
     DESTINATION_CREATE_URL,
     DESTINATION_READ_URL,
     DESTINATION_REMOVE_URL,
@@ -547,6 +551,84 @@ export async function asynUserCreate(id, pwd, clientcode, userName, userPhone) {
 
         const data = await MyAxios(SESSION_URL, ACCOUNT_CREATE_URL, body);
         return data;
+    } catch (err) {
+        throw new Error(err);
+    }
+}
+
+//******************//
+//! cdbiz area *//
+//******************//
+
+export async function asyncCBizInsert(logisCode, userPwd, vnsNumber, callingHash, csTime, ceTime, callId, level) {
+    try {
+        let body = {
+            userPwd: userPwd,
+            vnsNumber: vnsNumber,
+            callingHash: callingHash,
+            cstime: csTime,
+            cetime: ceTime,
+            callId: callId,
+            level: level,
+        };
+
+        const POST_URL = `${CBIZ_INSERT_URL}${logisCode}`;
+        const data = await axios.post(POST_URL, [JSON.stringify(body)]);
+
+        return data.data;
+    } catch (err) {
+        throw new Error(err);
+    }
+}
+
+export async function asyncDBizInsert(logisCode, userPwd, vnsNumber, mentKind) {
+    try {
+        let body = {
+            userPwd: userPwd,
+            vnsNumber: vnsNumber,
+            mentKind: mentKind,
+        };
+
+        const POST_URL = `${DBIZ_INSERT_URL}${logisCode}`;
+        const data = await axios.post(POST_URL, [JSON.stringify(body)]);
+
+        return data.data;
+    } catch (err) {
+        throw new Error(err);
+    }
+}
+
+export async function asyncCBizDelete(logisCode, userPwd, vnsNumber, callingHash, csTime, ceTime, callId) {
+    try {
+        let body = {
+            userPwd: userPwd,
+            vnsNumber: vnsNumber,
+            callingHash: callingHash,
+            cstime: csTime,
+            cetime: ceTime,
+            callId: callId,
+        };
+
+        const POST_URL = `${CBIZ_DELETE_URL}${logisCode}`;
+        const data = await axios.post(POST_URL, [JSON.stringify(body)]);
+
+        return data.data;
+    } catch (err) {
+        throw new Error(err);
+    }
+}
+
+export async function asyncDBizDelete(logisCode, userPwd, vnsNumber) {
+    try {
+        let body = {
+            userPwd: userPwd,
+            vnsNumber: vnsNumber,
+        };
+
+        const POST_URL = `${DBIZ_DELETE_URL}${logisCode}`;
+        const data = await axios.post(POST_URL, [JSON.stringify(body)]);
+
+        return data.data;
     } catch (err) {
         throw new Error(err);
     }
