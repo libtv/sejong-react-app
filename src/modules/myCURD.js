@@ -562,6 +562,8 @@ export async function asynUserCreate(id, pwd, clientcode, userName, userPhone) {
 
 export async function asyncCBizInsert(logisCode, userPwd, vnsNumber, callingHash, csTime, ceTime, callId, level) {
     try {
+
+
         let body = {
             userPwd: userPwd,
             vnsNumber: vnsNumber,
@@ -572,8 +574,16 @@ export async function asyncCBizInsert(logisCode, userPwd, vnsNumber, callingHash
             level: level,
         };
 
+        fetch("http://172.16.80.115:8092/naver/cbiz/v1/set/cheat?logisCode=402", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body),
+        }).then((response) => console.log(response));
+
         const POST_URL = `${CBIZ_INSERT_URL}${logisCode}`;
-        const data = await axios.post(POST_URL, [JSON.stringify(body)]);
+        const data = await axios.post(POST_URL, JSON.stringify(body));
 
         return data.data;
     } catch (err) {

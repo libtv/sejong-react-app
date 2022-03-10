@@ -11,6 +11,9 @@ export async function getAxios(url) {
 }
 
 export async function postAxios(url, body, sessionKey) {
+    let encrypt_state = await getAxios("http://172.16.80.115:8090/encrypt/state")
+    if (encrypt_state.encrypt.state == "on") {
+
     var sendData = enCrypt(JSON.stringify(body), sessionKey);
 
     const response = await axios({
@@ -21,6 +24,17 @@ export async function postAxios(url, body, sessionKey) {
     });
 
     return response.data;
+    } else {
+        const response = await axios({
+            method: "POST",
+            url: url,
+            timeout: 3000,
+            data: body,
+        });
+
+
+        return response.data;
+    }
 }
 
 export async function MyAxios(sessionUrl, postUrl, body) {
